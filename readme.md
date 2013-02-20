@@ -35,6 +35,7 @@ There are a lot of things I need to configure when on a new computer, and I find
 - [pow](http://pow.cx/)
 - [heroku toolbelt](https://toolbelt.heroku.com/)
 - [sequel pro](http://www.sequelpro.com/)
+- [spotify](https://www.spotify.com/us)
 - photoshop (ugh...)
 
 #### Terminal Setup
