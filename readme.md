@@ -25,21 +25,22 @@ There are a lot of things I need to configure when on a new computer, and I find
 - sparrow
 
 #### External Installs
-- google chrome
-- totalterminal
-- adium
-- sublime text
-- node.js
-- pow
-- heroku toolbelt
+- [google chrome](https://www.google.com/intl/en/chrome/browser/)
+- [totalterminal](http://totalterminal.binaryage.com/)
+- [adium](http://adium.im/)
+- [sublime text](http://www.sublimetext.com/)
+- [node.js](http://nodejs.org/)
+- [pow](http://pow.cx/)
+- [heroku toolbelt](https://toolbelt.heroku.com/)
 
 #### Terminal Setup
-- tomorrow night theme
+- [tomorrow night](https://github.com/chriskempson/tomorrow-theme/blob/master/OS%20X%20Terminal/Tomorrow%20Night.terminal) theme
 - install xcode build tools
 - link sublime: `ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/local/bin/sub`
 - copy .profile
-- git completion files
-- homebrew
+- [git completion](https://github.com/git/git/tree/master/contrib/completion) files
+- [install homebrew](http://mxcl.github.com/homebrew/)
+- [set up git](https://help.github.com/articles/set-up-git)
 
 #### Homebrew
 - git
@@ -65,6 +66,6 @@ There are a lot of things I need to configure when on a new computer, and I find
 - mocha
 
 #### Sublime Text Setup
-- tomorrow night theme
+- [tomorrow night](https://github.com/chriskempson/tomorrow-theme/blob/master/textmate/Tomorrow-Night.tmTheme) theme
+- install [package control](http://wbond.net/sublime_packages/package_control/installation)
 - register license
-- package control
