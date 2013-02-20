@@ -41,6 +41,7 @@ There are a lot of things I need to configure when on a new computer, and I find
 - [git completion](https://github.com/git/git/tree/master/contrib/completion) files
 - [install homebrew](http://mxcl.github.com/homebrew/)
 - [set up git](https://help.github.com/articles/set-up-git)
+- install latest ruby through rbenv
 
 #### Homebrew
 - git
