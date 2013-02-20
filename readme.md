@@ -36,6 +36,7 @@ There are a lot of things I need to configure when on a new computer, and I find
 - [heroku toolbelt](https://toolbelt.heroku.com/)
 - [sequel pro](http://www.sequelpro.com/)
 - [spotify](https://www.spotify.com/us)
+- [nibbble screensaver](http://uglyapps.co.uk/nibbble/)
 - photoshop (ugh...)
 
 #### Terminal Setup
