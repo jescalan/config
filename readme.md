@@ -23,6 +23,8 @@ There are a lot of things I need to configure when on a new computer, and I find
 - little ipsum
 - alfred
 - sparrow
+- slicy
+- transmit
 
 #### External Installs
 - [google chrome](https://www.google.com/intl/en/chrome/browser/)
@@ -32,6 +34,8 @@ There are a lot of things I need to configure when on a new computer, and I find
 - [node.js](http://nodejs.org/)
 - [pow](http://pow.cx/)
 - [heroku toolbelt](https://toolbelt.heroku.com/)
+- [sequel pro](http://www.sequelpro.com/)
+- photoshop (ugh...)
 
 #### Terminal Setup
 - [tomorrow night](https://github.com/chriskempson/tomorrow-theme/blob/master/OS%20X%20Terminal/Tomorrow%20Night.terminal) theme
