@@ -1,0 +1,24 @@
+<span class="incoming history"
+onmouseover="$(this).fadeTo(400, 1); $(this).children('.sender').children('.name').show(); $(this).children('.sender').children('.service').show(); $(this).children('.message').children('.time').show();"
+onmouseout="$(this).fadeTo(800, 0.4); $(this).children('.sender').children('.name').hide(); $(this).children('.sender').children('.service').hide(); $(this).children('.message').children('.time').hide();">
+	<div class="sender">
+		<div class="icon"><img src="%userIconPath%" alt="" width="32" height="32" onload="Reflection.add(this,null);" /></div>
+		<div class="name">%sender%</div>
+		<div class="service">%service%</div>
+	</div>
+	<div class="message">
+		<div class="topleft"></div>
+		<div class="top"></div>
+		<div class="topright"></div>
+		<div class="time">%time%</div>
+		<div class="body">%message%</div>
+		<div class="left"></div>
+		<div class="middle"></div>
+		<div class="right"></div>
+		<div class="bottomleft"></div>
+		<div class="bottom"></div>
+		<div class="bottomright"></div>
+	</div>
+</span>	
+<br clear="all">
+<div id="insert"></div>

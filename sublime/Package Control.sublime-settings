@@ -1,0 +1,16 @@
+{
+	"installed_packages":
+	[
+		"Backbone.js",
+		"CoffeeScript",
+		"CoffeeScript Function Finder",
+		"Haml",
+		"Jade",
+		"Marked.app Menu",
+		"Package Control",
+		"ruby-slim.tmbundle",
+		"Sass",
+		"Stylus",
+		"ToggleQuotes"
+	]
+}

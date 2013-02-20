@@ -1,0 +1,338 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<capabilities>
+	<client node='http://pidgin.im/' ver='lV6i//bt2U8Rm0REcX8h4F3Nk3M=' hash='sha-1'>
+		<identity category='client' type='pc' name='Pidgin'/>
+		<feature var='http://jabber.org/protocol/bytestreams'/>
+		<feature var='http://jabber.org/protocol/caps'/>
+		<feature var='http://jabber.org/protocol/chatstates'/>
+		<feature var='http://jabber.org/protocol/disco#info'/>
+		<feature var='http://jabber.org/protocol/disco#items'/>
+		<feature var='http://jabber.org/protocol/ibb'/>
+		<feature var='http://jabber.org/protocol/mood+notify'/>
+		<feature var='http://jabber.org/protocol/muc'/>
+		<feature var='http://jabber.org/protocol/muc#user'/>
+		<feature var='http://jabber.org/protocol/nick+notify'/>
+		<feature var='http://jabber.org/protocol/si'/>
+		<feature var='http://jabber.org/protocol/si/profile/file-transfer'/>
+		<feature var='http://jabber.org/protocol/tune+notify'/>
+		<feature var='http://jabber.org/protocol/xhtml-im'/>
+		<feature var='http://www.google.com/xmpp/protocol/camera/v1'/>
+		<feature var='http://www.google.com/xmpp/protocol/session'/>
+		<feature var='http://www.google.com/xmpp/protocol/video/v1'/>
+		<feature var='http://www.google.com/xmpp/protocol/voice/v1'/>
+		<feature var='jabber:iq:last'/>
+		<feature var='jabber:iq:oob'/>
+		<feature var='jabber:iq:version'/>
+		<feature var='jabber:x:conference'/>
+		<feature var='urn:xmpp:attention:0'/>
+		<feature var='urn:xmpp:avatar:metadata+notify'/>
+		<feature var='urn:xmpp:bob'/>
+		<feature var='urn:xmpp:jingle:1'/>
+		<feature var='urn:xmpp:jingle:apps:rtp:1'/>
+		<feature var='urn:xmpp:jingle:apps:rtp:audio'/>
+		<feature var='urn:xmpp:jingle:apps:rtp:video'/>
+		<feature var='urn:xmpp:jingle:transports:ice-udp:1'/>
+		<feature var='urn:xmpp:jingle:transports:raw-udp:1'/>
+		<feature var='urn:xmpp:ping'/>
+		<feature var='urn:xmpp:time'/>
+	</client>
+	<client node='http://www.android.com/gtalk/client/caps' ver='1.1'>
+		<identity category='account' type='registered' name='Google Talk User Account'/>
+		<feature var='http://jabber.org/protocol/disco#items'/>
+		<feature var='http://jabber.org/protocol/disco#info'/>
+		<ext identifier='voice-v1'>
+			<feature var='http://jabber.org/protocol/disco#items'/>
+			<feature var='http://jabber.org/protocol/disco#info'/>
+		</ext>
+		<ext identifier='camera-v1'>
+			<feature var='http://jabber.org/protocol/disco#items'/>
+			<feature var='http://jabber.org/protocol/disco#info'/>
+		</ext>
+		<ext identifier='video-v1'>
+			<feature var='http://jabber.org/protocol/disco#items'/>
+			<feature var='http://jabber.org/protocol/disco#info'/>
+		</ext>
+		<ext identifier='pmuc-v1'>
+			<feature var='http://jabber.org/protocol/disco#items'/>
+			<feature var='http://jabber.org/protocol/disco#info'/>
+		</ext>
+	</client>
+	<client node='http://pidgin.im/' ver='71LAP/wlWGfun7j+Q4FCSSuAhQw=' hash='sha-1'>
+		<identity category='client' type='pc' name='Pidgin'/>
+		<feature var='http://jabber.org/protocol/bytestreams'/>
+		<feature var='http://jabber.org/protocol/caps'/>
+		<feature var='http://jabber.org/protocol/chatstates'/>
+		<feature var='http://jabber.org/protocol/disco#info'/>
+		<feature var='http://jabber.org/protocol/disco#items'/>
+		<feature var='http://jabber.org/protocol/ibb'/>
+		<feature var='http://jabber.org/protocol/mood+notify'/>
+		<feature var='http://jabber.org/protocol/muc'/>
+		<feature var='http://jabber.org/protocol/muc#user'/>
+		<feature var='http://jabber.org/protocol/nick+notify'/>
+		<feature var='http://jabber.org/protocol/si'/>
+		<feature var='http://jabber.org/protocol/si/profile/file-transfer'/>
+		<feature var='http://jabber.org/protocol/tune+notify'/>
+		<feature var='http://jabber.org/protocol/xhtml-im'/>
+		<feature var='jabber:iq:last'/>
+		<feature var='jabber:iq:oob'/>
+		<feature var='jabber:iq:version'/>
+		<feature var='jabber:x:conference'/>
+		<feature var='urn:xmpp:attention:0'/>
+		<feature var='urn:xmpp:avatar:metadata+notify'/>
+		<feature var='urn:xmpp:bob'/>
+		<feature var='urn:xmpp:jingle:1'/>
+		<feature var='urn:xmpp:ping'/>
+		<feature var='urn:xmpp:time'/>
+	</client>
+	<client node='http://www.apple.com/ichat/caps' ver='900'>
+		<identity category='client' type='pc' name='imagent'/>
+		<feature var='http://www.apple.com/xmpp/message-attachments'/>
+		<feature var='apple:profile:transfer-extensions:rsrcfork'/>
+		<feature var='http://jabber.org/protocol/si/profile/file-transfer'/>
+		<feature var='apple:profile:efh-transfer'/>
+		<feature var='http://jabber.org/protocol/bytestreams'/>
+		<feature var='http://jabber.org/protocol/sipub'/>
+		<feature var='http://jabber.org/protocol/si'/>
+		<feature var='jabber:iq:version'/>
+		<feature var='http://jabber.org/protocol/disco#info'/>
+		<feature var='vcard-temp:x:update'/>
+		<feature var='http://jabber.org/protocol/xhtml-im'/>
+		<ext identifier='avavail'>
+			<feature var='apple:iq:vc:available'/>
+		</ext>
+		<ext identifier='rdserver'>
+			<feature var='apple:iq:rd:server'/>
+		</ext>
+		<ext identifier='video'>
+			<feature var='apple:iq:vc:video'/>
+		</ext>
+		<ext identifier='maudio'>
+			<feature var='apple:iq:vc:multiaudio'/>
+		</ext>
+		<ext identifier='auxvideo'>
+			<feature var='apple:iq:vc:auxvideo'/>
+		</ext>
+		<ext identifier='rdmuxing'>
+			<feature var='apple:iq:rd:muxing'/>
+		</ext>
+		<ext identifier='avcap'>
+			<feature var='apple:iq:vc:capable'/>
+		</ext>
+		<ext identifier='rdclient'>
+			<feature var='apple:iq:rd:client'/>
+		</ext>
+		<ext identifier='mvideo'>
+			<feature var='apple:iq:vc:multivideo'/>
+		</ext>
+		<ext identifier='recauth'>
+			<feature var='apple:iq:vc:recauth'/>
+		</ext>
+		<ext identifier='ice'>
+			<feature var='apple:iq:vc:ice'/>
+		</ext>
+		<ext identifier='audio'>
+			<feature var='apple:iq:vc:audio'/>
+		</ext>
+	</client>
+	<client node='http://www.apple.com/ichat/caps' ver='800'>
+		<identity category='client' type='pc' name='imagent'/>
+		<feature var='http://www.apple.com/xmpp/message-attachments'/>
+		<feature var='apple:profile:transfer-extensions:rsrcfork'/>
+		<feature var='http://jabber.org/protocol/si/profile/file-transfer'/>
+		<feature var='apple:profile:efh-transfer'/>
+		<feature var='http://jabber.org/protocol/bytestreams'/>
+		<feature var='http://jabber.org/protocol/sipub'/>
+		<feature var='http://jabber.org/protocol/si'/>
+		<feature var='jabber:iq:version'/>
+		<feature var='http://jabber.org/protocol/disco#info'/>
+		<feature var='vcard-temp:x:update'/>
+		<feature var='http://jabber.org/protocol/xhtml-im'/>
+		<ext identifier='avavail'>
+			<feature var='apple:iq:vc:available'/>
+		</ext>
+		<ext identifier='rdserver'>
+			<feature var='apple:iq:rd:server'/>
+		</ext>
+		<ext identifier='video'>
+			<feature var='apple:iq:vc:video'/>
+		</ext>
+		<ext identifier='maudio'>
+			<feature var='apple:iq:vc:multiaudio'/>
+		</ext>
+		<ext identifier='auxvideo'>
+			<feature var='apple:iq:vc:auxvideo'/>
+		</ext>
+		<ext identifier='rdmuxing'>
+			<feature var='apple:iq:rd:muxing'/>
+		</ext>
+		<ext identifier='avcap'>
+			<feature var='apple:iq:vc:capable'/>
+		</ext>
+		<ext identifier='rdclient'>
+			<feature var='apple:iq:rd:client'/>
+		</ext>
+		<ext identifier='mvideo'>
+			<feature var='apple:iq:vc:multivideo'/>
+		</ext>
+		<ext identifier='recauth'>
+			<feature var='apple:iq:vc:recauth'/>
+		</ext>
+		<ext identifier='ice'>
+			<feature var='apple:iq:vc:ice'/>
+		</ext>
+		<ext identifier='audio'>
+			<feature var='apple:iq:vc:audio'/>
+		</ext>
+	</client>
+	<client node='http://pidgin.im/' ver='VUFD6HcFmUT2NxJkBGCiKlZnS3M=' hash='sha-1'>
+		<identity category='client' type='pc' name='Adium'/>
+		<feature var='http://jabber.org/protocol/bytestreams'/>
+		<feature var='http://jabber.org/protocol/caps'/>
+		<feature var='http://jabber.org/protocol/chatstates'/>
+		<feature var='http://jabber.org/protocol/commands'/>
+		<feature var='http://jabber.org/protocol/disco#info'/>
+		<feature var='http://jabber.org/protocol/disco#items'/>
+		<feature var='http://jabber.org/protocol/ibb'/>
+		<feature var='http://jabber.org/protocol/mood+notify'/>
+		<feature var='http://jabber.org/protocol/muc'/>
+		<feature var='http://jabber.org/protocol/muc#user'/>
+		<feature var='http://jabber.org/protocol/nick+notify'/>
+		<feature var='http://jabber.org/protocol/si'/>
+		<feature var='http://jabber.org/protocol/si/profile/file-transfer'/>
+		<feature var='http://jabber.org/protocol/tune+notify'/>
+		<feature var='http://jabber.org/protocol/xhtml-im'/>
+		<feature var='jabber:iq:last'/>
+		<feature var='jabber:iq:oob'/>
+		<feature var='jabber:iq:version'/>
+		<feature var='jabber:x:conference'/>
+		<feature var='urn:xmpp:attention:0'/>
+		<feature var='urn:xmpp:avatar:metadata+notify'/>
+		<feature var='urn:xmpp:bob'/>
+		<feature var='urn:xmpp:jingle:1'/>
+		<feature var='urn:xmpp:ping'/>
+		<feature var='urn:xmpp:time'/>
+	</client>
+	<client node='http://monal.im/caps' ver='HVwXZhtjIuGoUkTR/irSIXScj8c='>
+		<identity category='client' type='phone' name='monal'/>
+		<feature var='urn:xmpp:jingle:apps:rtp:audio'/>
+		<feature var='urn:xmpp:jingle:apps:rtp:1'/>
+		<feature var='urn:xmpp:jingle:transports:raw-udp:1'/>
+		<feature var='urn:xmpp:jingle:transports:raw-udp:0'/>
+		<feature var='urn:xmpp:jingle:1'/>
+		<feature var='http://jabber.org/protocol/muc#user'/>
+		<feature var='jabber:iq:version'/>
+		<feature var='http://jabber.org/protocol/disco#info'/>
+		<feature var='http://jabber.org/protocol/disco#items'/>
+		<ext identifier='voice-v1'>
+			<feature var='urn:xmpp:jingle:apps:rtp:audio'/>
+			<feature var='urn:xmpp:jingle:apps:rtp:1'/>
+			<feature var='urn:xmpp:jingle:transports:raw-udp:1'/>
+			<feature var='urn:xmpp:jingle:transports:raw-udp:0'/>
+			<feature var='urn:xmpp:jingle:1'/>
+			<feature var='http://jabber.org/protocol/muc#user'/>
+			<feature var='jabber:iq:version'/>
+			<feature var='http://jabber.org/protocol/disco#info'/>
+			<feature var='http://jabber.org/protocol/disco#items'/>
+		</ext>
+		<ext identifier='pmuc-v1'>
+			<feature var='urn:xmpp:jingle:apps:rtp:audio'/>
+			<feature var='urn:xmpp:jingle:apps:rtp:1'/>
+			<feature var='urn:xmpp:jingle:transports:raw-udp:1'/>
+			<feature var='urn:xmpp:jingle:transports:raw-udp:0'/>
+			<feature var='urn:xmpp:jingle:1'/>
+			<feature var='http://jabber.org/protocol/muc#user'/>
+			<feature var='jabber:iq:version'/>
+			<feature var='http://jabber.org/protocol/disco#info'/>
+			<feature var='http://jabber.org/protocol/disco#items'/>
+		</ext>
+	</client>
+	<client node='http://mail.google.com/xmpp/client/caps' ver='1.1'>
+		<identity category='client' type='pc'/>
+		<feature var='http://jabber.org/protocol/disco#info'/>
+		<ext identifier='camera-v1'>
+			<feature var='http://www.google.com/xmpp/protocol/camera/v1'/>
+		</ext>
+		<ext identifier='voice-v1'>
+			<feature var='http://www.google.com/xmpp/protocol/voice/v1'/>
+		</ext>
+		<ext identifier='video-v1'>
+			<feature var='http://www.google.com/xmpp/protocol/video/v1'/>
+		</ext>
+		<ext identifier='sms-v1'>
+			<feature var='http://www.google.com/xmpp/protocol/sms/v1'/>
+		</ext>
+		<ext identifier='pmuc-v1'>
+			<feature var='http://www.google.com/xmpp/protocol/pmuc/v1'/>
+		</ext>
+		<ext identifier='vavinvite-v1'>
+			<feature var='http://www.google.com/xmpp/protocol/vavinvite/v1'/>
+		</ext>
+	</client>
+	<client node='http://pidgin.im/caps' ver='2.5.9'>
+		<identity category='client' type='pc' name='pidgin'/>
+		<feature var='http://www.xmpp.org/extensions/xep-0199.html#ns'/>
+		<feature var='urn:xmpp:ping'/>
+		<feature var='http://jabber.org/protocol/xhtml-im'/>
+		<feature var='http://jabber.org/protocol/si/profile/file-transfer'/>
+		<feature var='http://jabber.org/protocol/si'/>
+		<feature var='http://jabber.org/protocol/muc#user'/>
+		<feature var='http://jabber.org/protocol/muc'/>
+		<feature var='http://jabber.org/protocol/disco#items'/>
+		<feature var='http://jabber.org/protocol/disco#info'/>
+		<feature var='http://jabber.org/protocol/bytestreams'/>
+		<feature var='jabber:x:conference'/>
+		<feature var='jabber:iq:version'/>
+		<feature var='xmpp:urn:time'/>
+		<feature var='jabber:iq:time'/>
+		<feature var='jabber:iq:oob'/>
+		<feature var='jabber:iq:last'/>
+		<ext identifier='moodn'>
+			<feature var='http://jabber.org/protocol/mood+notify'/>
+		</ext>
+		<ext identifier='nickn'>
+			<feature var='http://jabber.org/protocol/nick+notify'/>
+		</ext>
+		<ext identifier='buzz'>
+			<feature var='http://www.xmpp.org/extensions/xep-0224.html#ns'/>
+		</ext>
+		<ext identifier='bob'>
+			<feature var='urn:xmpp:bob'/>
+		</ext>
+		<ext identifier='tunen'>
+			<feature var='http://jabber.org/protocol/tune+notify'/>
+		</ext>
+		<ext identifier='avatar'>
+			<feature var='http://www.xmpp.org/extensions/xep-0084.html#ns-metadata+notify'/>
+		</ext>
+		<ext identifier='adiumcmd'>
+			<feature var='http://jabber.org/protocol/commands'/>
+		</ext>
+	</client>
+	<client node='http://www.google.com/xmpp/client/caps' ver='1.0.0.104'>
+		<identity category='client' type='pc'/>
+		<feature var='http://www.google.com/xmpp/protocol/session'/>
+		<feature var='http://jabber.org/protocol/disco#info'/>
+		<ext identifier='voice-v1'>
+			<feature var='http://www.google.com/xmpp/protocol/voice/v1'/>
+		</ext>
+		<ext identifier='share-v1'>
+			<feature var='http://www.google.com/xmpp/protocol/share/v1'/>
+		</ext>
+	</client>
+	<client node='http://talkgadget.google.com/client/caps' ver='1.0'>
+		<identity category='client' type='web'/>
+		<ext identifier='camera-v1'>
+			<feature var='http://www.google.com/xmpp/protocol/camera/v1'/>
+		</ext>
+		<ext identifier='voice-v1'>
+			<feature var='http://www.google.com/xmpp/protocol/voice/v1'/>
+		</ext>
+		<ext identifier='video-v1'>
+			<feature var='http://www.google.com/xmpp/protocol/video/v1'/>
+		</ext>
+		<ext identifier='pmuc-v1'>
+			<feature var='http://www.google.com/xmpp/protocol/pmuc/v1'/>
+		</ext>
+	</client>
+</capabilities>

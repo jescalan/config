@@ -1,0 +1,24 @@
+{
+	"bold_folder_labels": true,
+	"caret_style": "phase",
+	"color_scheme": "Packages/Tomorrow-Night.tmTheme",
+	"folder_exclude_patterns":
+	[
+		".bundle",
+		".git",
+		".sass-cache"
+	],
+	"font_options":
+	[
+		"subpixel_antialias"
+	],
+	"font_size": 14.0,
+	"highlight_line": true,
+	"highlight_modified_tabs": true,
+	"ignored_packages": [],
+	"match_brackets_angle": true,
+	"scroll_past_end": true,
+	"tab_size": 2,
+	"translate_tabs_to_spaces": true,
+	"word_wrap": "true"
+}

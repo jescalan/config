@@ -1,0 +1,137 @@
+/* @group message */
+
+.message {
+	position: relative;
+	min-height: 42px;
+}
+.message .body {
+	padding: 9px 20px 22px 20px;
+	/*word-wrap: break-word;*/
+	/*text-shadow: #ccc 0px 1px 1px;*/
+	overflow: hidden;
+}
+.message .time {
+	font-family: helvetica, sans-serif;
+	font-size: 9px;
+	position: absolute;
+	bottom: -2px;
+	text-align: center;
+	width: 100%;
+	color: #c7c7c7;
+	visibility: hidden;
+}
+/*.message:hover .time {
+	visibility: visible;
+}*/
+
+.message .topleft {
+	background: url("../../images/modern/topleft.png") top left no-repeat;
+	width: 24px;
+	height: 14px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: -1;
+}
+.message .top {
+	background: url("../../images/modern/top.png") top right repeat-x;
+	height: 14px;
+	position: absolute;
+	top: 0px;
+	right: 24px;
+	left: 24px;
+	z-index: -1;
+}
+.message .topright {
+	background: url("../../images/modern/topright.png") top right no-repeat;
+	width: 24px;
+	height: 16px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	z-index: -1;
+}
+.message .left {
+	background: url("../../images/modern/left.png") top left repeat-y;
+	width: 24px;
+	position: absolute;
+	left: 0px;
+	top: 14px;
+	bottom: 29px;
+	z-index: -1;
+}
+.message .middle {
+	background: url("../../images/modern/middle.png") top left repeat;
+	position: absolute;
+	left: 24px;
+	right: 24px;
+	top: 14px;
+	bottom: 29px;
+	z-index: -1;
+}
+.message .right {
+	background: url("../../images/modern/right.png") top right repeat-y;
+	width: 24px;
+	position: absolute;
+	right: 0px;
+	top: 14px;
+	bottom: 29px;
+	z-index: -1;
+}
+.message .bottomleft {
+	background: url("../../images/modern/bottomleft.png") top left no-repeat;
+	width: 24px;
+	height: 29px;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	z-index: -1;
+}
+.message .bottom {
+	background: url("../../images/modern/bottom.png") top right repeat-x;
+	height: 29px;
+	position: absolute;
+	bottom: 0px;
+	right: 24px;
+	left: 24px;
+	z-index: -1;
+}
+.message .bottomright {
+	background: url("../../images/modern/bottomright.png") top right no-repeat;
+	width: 24px;
+	height: 29px;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	z-index: -1;
+}
+
+.message .compact {
+	padding: 9px 20px 22px 20px;
+}
+.message .compact .cbody, .message .compact .cnbody {
+	position: relative;
+	word-wrap: break-word;
+}
+.message .compact .cnbody {
+	border-top: 1px dotted #d8d8d8;
+	padding-top: 5px;
+	margin-top: 5px;
+}
+.message .compact .ctime {
+	font-size: 9px;
+	position: absolute;
+	width: 40px;
+	top: 3px;
+	color: #c7c7c7;
+	white-space: nowrap;
+	visibility: hidden;
+}
+.message .compact .cnbody .ctime {
+	top: 5px;
+}
+/*.message .compact:hover .cbody .ctime, .message .compact:hover .cnbody .ctime {
+	visibility: visible;
+}*/
+
+/* @end */

@@ -1,0 +1,44 @@
+
+/* @group outgoing */
+
+.outgoing .compact .cnbody {
+	border-top: 1px dotted #bfbfbf;
+}
+
+.outgoing .message .bottomleft {
+	background-image: url("../../images/glass-grey/bottomleft-arrow.png");
+}
+
+/* @group message */
+
+.outgoing .message .topleft {
+	background: url("../../images/glass-grey/topleft.png");
+}
+.outgoing .message .top {
+	background: url("../../images/glass-grey/top.png");
+}
+.outgoing .message .topright {
+	background: url("../../images/glass-grey/topright.png");
+}
+.outgoing .message .left {
+	background: url("../../images/glass-grey/left.png");
+}
+.outgoing .message .middle {
+	background: url("../../images/glass-grey/middle.png");
+}
+.outgoing .message .right {
+	background: url("../../images/glass-grey/right.png");
+}
+/*.outgoing .message .bottomleft {
+	background: url("../../images/glass-grey/bottomleft.png");
+}*/
+.outgoing .message .bottom {
+	background: url("../../images/glass-grey/bottom.png");
+}
+.outgoing .message .bottomright {
+	background: url("../../images/glass-grey/bottomright.png");
+}
+
+/* @end */
+
+/* @end */

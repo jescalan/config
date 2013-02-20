@@ -1,0 +1,51 @@
+
+/* @group outgoing */
+
+/*.outgoing .history {
+	color: #54d1d3;
+}*/
+
+.outgoing .compact .cnbody {
+	border-top: 1px dotted #54d1d3;
+}
+
+.outgoing .message .bottomleft {
+	background-image: url("../../images/glass-cyan/bottomleft-arrow.png");
+}
+
+/* @group message */
+
+.outgoing .message .time {
+	color: #a1e2e7;
+}
+.outgoing .message .topleft {
+	background: url("../../images/glass-cyan/topleft.png");
+}
+.outgoing .message .top {
+	background: url("../../images/glass-cyan/top.png");
+}
+.outgoing .message .topright {
+	background: url("../../images/glass-cyan/topright.png");
+}
+.outgoing .message .left {
+	background: url("../../images/glass-cyan/left.png");
+}
+.outgoing .message .middle {
+	background: url("../../images/glass-cyan/middle.png");
+}
+.outgoing .message .right {
+	background: url("../../images/glass-cyan/right.png");
+}
+/*.outgoing .message .bottomleft {
+	background: url("../../images/glass-cyan/bottomleft.png");
+}*/
+.outgoing .message .bottom {
+	background: url("../../images/glass-cyan/bottom.png");
+}
+.outgoing .message .bottomright {
+	background: url("../../images/glass-cyan/bottomright.png");
+}
+
+/* @end */
+
+/* @end */

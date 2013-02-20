@@ -53,6 +53,7 @@ There are a lot of things I need to configure when on a new computer, and I find
 - qt
 
 #### Gems
+- echo -e "install: --no-rdoc --no-ri\nupdate:  --no-rdoc --no-ri" >> ~/.gemrc
 - bundler
 - rails
 - powder
@@ -61,6 +62,7 @@ There are a lot of things I need to configure when on a new computer, and I find
 - coffee-script
 - roots
 - jitsu
+- mocha
 
 #### Sublime Text Setup
 - tomorrow night theme

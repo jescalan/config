@@ -1,0 +1,5 @@
+/* import header for the modern variant */
+@import url("../_headers/modern.css");
+
+/* include the global header override style sheet */
+@import url("../_headers/_global_override.css");
