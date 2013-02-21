@@ -61,7 +61,7 @@ There are a lot of things I need to configure when on a new computer, and I find
 - qt
 
 #### Gems
-- echo -e "install: --no-rdoc --no-ri\nupdate:  --no-rdoc --no-ri" >> ~/.gemrc
+- `echo -e "install: --no-rdoc --no-ri\nupdate:  --no-rdoc --no-ri" >> ~/.gemrc`
 - bundler
 - rails
 - powder
