@@ -51,14 +51,16 @@ There are a lot of things I need to configure when on a new computer, and I find
 
 #### Homebrew
 - git
+- tig
 - rbenv
 - ruby-build
 - grc
 - postgres
 - mysql
 - redis
-- mongo
+- mongodb
 - qt
+- imagemagick
 
 #### Gems
 - `echo -e "install: --no-rdoc --no-ri\nupdate:  --no-rdoc --no-ri" >> ~/.gemrc`
