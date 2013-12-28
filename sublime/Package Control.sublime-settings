@@ -1,16 +1,31 @@
 {
+	"auto_upgrade_last_run": null,
 	"installed_packages":
 	[
-		"Backbone.js",
+		"AdvancedNewFile",
+		"Alignment",
+		"BracketHighlighter",
 		"CoffeeScript",
-		"CoffeeScript Function Finder",
+		"DocBlockr",
+		"Emmet",
+		"GitGutter",
+		"GotoRecent",
 		"Haml",
+		"HexViewer",
+		"HTML5",
+		"Http Requester",
 		"Jade",
+		"jQuery Snippets pack",
+		"JsMinifier",
 		"Marked.app Menu",
+		"Nodejs",
 		"Package Control",
-		"ruby-slim.tmbundle",
-		"Sass",
+		"Ruby Slim",
+		"SCSS",
 		"Stylus",
-		"ToggleQuotes"
+		"SublimeBlockCursor",
+		"Sublimipsum",
+		"Theme - Spacegray"
 	]
 }
+
