@@ -1,4 +1,4 @@
-install: copy dotfiles osx bins apps npm gems sublime git desktop screensaver
+install: copy dotfiles osx bins apps npm gems sublime vim git adium desktop screensaver
 
 warning:
 	read -p "This will overwrite existing settings. Are you sure? (y/n) " -n 1 -r
@@ -11,16 +11,16 @@ copy:
 	cp -r ./.* ~/.conf
 	cd ~/.conf
 
-dotfiles: warning
+dotfiles: copy warning
 	function link_dotfile(){ ln -sf ~/.conf/"${@}" ~/"${@}" }
 	link_dotfile .bashrc
 	link_dotfile .bash_profile
 	link_dotfile .profile
 	link_dotfile .gitconfig
 	link_dotfile .hushlogin
-	link_dotfile .vimrc
-	link_dotfile .git-completion
-	link_dotfile .git-prompt
+	link_dotfile .git-completion.sh
+	link_dotfile .git-prompt.sh
+	link_dotfile .z.sh
 
 osx: warning
 	sh scripts/osx.sh
@@ -59,6 +59,7 @@ ruby: brew
 	rbenv global 2.0.0-p353
 
 gems: ruby
+	echo -e "install: --no-rdoc --no-ri\nupdate:  --no-rdoc --no-ri" >> ~/.gemrc
 	sh scripts/gems.sh
 
 pow: ruby
@@ -86,6 +87,14 @@ sublime: cask warning
 
 git: brew
 	brew install git
+	# TODO: set up email, ssh keys, etc
+
+vim: copy
+	ln -sf ~/.conf/.vim ~/.vim
+	ln -sf ~/.conf/.vimrc ~/.vimrc
+
+adium:
+	# TODO: implement this
 
 desktop: warning
 	cp destkop/bg.jpg ~/.conf/desktop/bg.jpg
@@ -96,7 +105,7 @@ screensaver: warning
 	curl -O http://uglyapps.co.uk/nibbble/nibbble.1.2.zip
 	unzip nibbble.1.2.zip -d /Users/`echo $USER`/Library/Screen\ Savers
 	cd -
-	defaults -currentHost read com.apple.screensaver { CleanExit = YES; PrefsVersion = 100; idleTime = 1200; moduleDict = { moduleName = Nibbble; path = "/Users/`echo $USER`/Library/Screen Savers/Nibbble.saver"; type = 0; }; showClock = 0; }
+	defaults -currentHost write com.apple.screensaver { CleanExit = YES; PrefsVersion = 100; idleTime = 1200; moduleDict = { moduleName = Nibbble; path = "/Users/`echo $USER`/Library/Screen Savers/Nibbble.saver"; type = 0; }; showClock = 0; }
 
 # TODO: open a "finished" page with any additional instructions
 # TODO: warnings, backups, and uninstalls?

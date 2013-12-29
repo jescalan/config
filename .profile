@@ -13,8 +13,10 @@ alias s="echo ''; git status -sb; echo ''"
 alias c="git commit"
 alias cm="fact; git commit -am"
 alias stage="git add ."
+alias pull="git pull"
 alias pullr="git pull -r"
 alias push="git push"
+alias pushu="git push -u"
 alias ri="git rebase -i"
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 alias branch="git branch"
@@ -34,9 +36,11 @@ alias img="open app/assets/images"
 alias be="bundle exec"
 
 # general
+source ~/.z.sh
+
 alias ll="ls -lahG"
 alias reload="exec $SHELL -l"
-alias profile="sub ~/.profile"
+alias profile="vim ~/.profile"
 alias p="echo ''; cd ~/Sites; ls -c1; echo '';"
 alias up="cd .."
 alias back="cd -"
