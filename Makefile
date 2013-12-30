@@ -1,28 +1,39 @@
-default: copy
+default: install
 
-install: copy dotfiles osx bins apps npm gems sublime vim git adium desktop screensaver
+all: install dotfiles osx bins apps npm gems sublime vim git adium desktop screensaver
 
 warning:
-	read -p "This will overwrite existing settings. Are you sure? (y/n) " -n 1 -r
-	if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-		exit 1
-	fi
+	@printf "This will overwrite existing settings. Are you sure? (y/n) "; \
+	read reply; \
+	if [[ ! $$reply =~ ^[Yy]$$ ]]; then \
+		exit 1;\
+	fi;
 
-copy:
-	cp -r . ~/.conf
-	cp -r ./.* ~/.conf
-	cd ~/.conf
+install:
+	@printf "installing... "
+	@rsync -av --no-perms . ~/.conf &> /dev/null
+	@echo "done!"
 
-dotfiles: copy warning
-	function link_dotfile(){ ln -sf ~/.conf/dotfiles/"${@}" ~/"${@}" }
-	link_dotfile .bashrc
-	link_dotfile .bash_profile
-	link_dotfile .profile
-	link_dotfile .gitconfig
-	link_dotfile .hushlogin
-	link_dotfile .git-completion.sh
-	link_dotfile .git-prompt.sh
-	link_dotfile .z.sh
+link_dotfile = @ln -sf ~/.conf/dotfiles/$(1) ~/$(1)
+
+dotfiles: install warning
+	@echo "creating .bashrc"
+	$(call link_dotfile,.bashrc)
+	@echo "creating .bash_profile"
+	$(call link_dotfile,.bash_profile)
+	@echo "creating .profile"
+	$(call link_dotfile,.profile)
+	@echo "creating .gitconfig"
+	$(call link_dotfile,.gitconfig)
+	@echo "creating .hushlogin"
+	$(call link_dotfile,.hushlogin)
+	@echo "creating .git-completion"
+	$(call link_dotfile,.git-completion.sh)
+	@echo "creating .git-prompt"
+	$(call link_dotfile,.git-prompt.sh)
+	@echo "creating .z"
+	$(call link_dotfile,.z.sh)
+	@source ~/.profile
 
 osx: warning
 	sh scripts/osx.sh
@@ -92,7 +103,7 @@ git: brew
 	brew install git
 	# TODO: set up email, ssh keys, etc
 
-vim: copy
+vim: install
 	ln -sf ~/.conf/dotfiles/.vim ~/.vim
 	ln -sf ~/.conf/dotfiles/.vimrc ~/.vimrc
 

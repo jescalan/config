@@ -51,7 +51,9 @@ alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C
 alias branch="git branch"
 alias amend="git commit --amend -m"
 
-tag() { git tag -a $1 -m "$1" }
+tag() {
+  git tag -a $1 -m "$1"
+}
 
 # -----
 # rbenv (https://github.com/sstephenson/rbenv)
