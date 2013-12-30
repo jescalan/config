@@ -52,6 +52,7 @@ cask: brew
 apps: cask
 	sh scripts/apps.sh
 	# TODO: key bindings for totalterminal and alfred
+	# totalterminal in com.apple.Terminal.plist / TotalTerminalShortcuts
 
 node: cask
 	brew cask install node
