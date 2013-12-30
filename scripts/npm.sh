@@ -1,4 +1,6 @@
-function -() { npm install "${@}" -g }
+function -() {
+  npm install $1 -g
+}
 
 npm update
 

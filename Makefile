@@ -10,9 +10,8 @@ warning:
 	fi;
 
 install:
-	@printf "installing... "
 	@rsync -av --no-perms . ~/.conf &> /dev/null
-	@echo "done!"
+	@echo "installed"
 
 link_dotfile = @ln -sf ~/.conf/dotfiles/$(1) ~/$(1)
 
@@ -36,29 +35,36 @@ dotfiles: install warning
 	@source ~/.profile
 
 osx: install warning
-	sh scripts/osx.sh
+	@sh scripts/osx.sh
 
 brew:
-	ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+	@command -v brew >/dev/null 2>&1 || ruby -e "$$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+	brew update
 
 bins: brew
-	sh scripts/bins.sh
+	@bash scripts/bins.sh
 
 cask: brew
-	brew tap phinze/homebrew-cask
-	brew install brew-cask
-	brew tap caskroom/versions # beta/alt versions
+	@if ! brew tap | grep -q "phinze/cask"; then \
+		brew tap phinze/cask; \
+		brew install brew-cask; \
+	fi;
+	@brew tap | grep -q "caskroom/versions" || brew tap caskroom/versions
 
 apps: cask
-	sh scripts/apps.sh
+	@bash scripts/apps.sh
 	# TODO: key bindings for totalterminal and alfred
 	# totalterminal in com.apple.Terminal.plist / TotalTerminalShortcuts
 
 node: cask
-	brew cask install node
+	@-if brew cask list | grep -q "node"; then \
+		brew upgrade node; \
+	else \
+		brew cask install node; \
+	fi
 
 npm: node
-	sh scripts/npm.sh
+	@bash scripts/npm.sh
 
 ruby: brew
 	brew install rbenv ruby-build
@@ -74,28 +80,27 @@ ruby: brew
 	rbenv global 2.0.0-p353
 
 gems: ruby
-	echo -e "install: --no-rdoc --no-ri\nupdate:  --no-rdoc --no-ri" >> ~/.gemrc
+	@echo -e "install: --no-rdoc --no-ri\nupdate:  --no-rdoc --no-ri" >> ~/.gemrc
 	sh scripts/gems.sh
 
 pow: ruby
 	curl get.pow.cx | sh
 
+pkg_path = ~/Library/Application\ Support/Sublime\ Text.app/Packages
 sublime: cask warning
 	# install sublime text if necessary
-	if ls /Applications/ | grep -q "Sublime Text.app"; then
-		brew cask install sublime-text3
-		ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/sub
+	@if ls /Applications/ | grep -q "Sublime Text.app"; then \
+		brew cask install sublime-text3; \
+		ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/sub'; \
 	fi
 
-	pkg_path = ~/Library/Application\ Support/Sublime\ Text.app/Packages
-
 	# install/update package control
-	cd $pkg_path/../Installed\ Packages
+	cd $(pkg_path)/../Installed\ Packages
 	curl -O https://sublime.wbond.net/Package%20Control.sublime-package
 	cd -
 
 	# copy package control packages
-	cp sublime/* $pkg_path/User/
+	cp sublime/* $(pkg_path)/User/
 
 	# restart sublime text
 	killall Sublime\ Text
@@ -103,6 +108,8 @@ sublime: cask warning
 git: brew
 	brew install git
 	# TODO: set up email, ssh keys, etc
+	# TODO: add git shortcuts to profile
+	# TODO: copy gitconfig dotfile
 
 vim: install
 	ln -sf ~/.conf/dotfiles/.vim ~/.vim
@@ -112,15 +119,15 @@ adium:
 	# TODO: implement this
 
 desktop: warning
-	cp destkop/bg.jpg ~/.conf/desktop/bg.jpg
-	defaults write com.apple.desktop Background '{default = {ImageFilePath = "~/.config/desktop/bg.jpg"; };}'
+	@cp destkop/bg.jpg ~/.conf/desktop/bg.jpg
+	@defaults write com.apple.desktop Background '{default = {ImageFilePath = "~/.config/desktop/bg.jpg"; };}'
 
 screensaver: warning
-	cd /tmp
-	curl -O http://uglyapps.co.uk/nibbble/nibbble.1.2.zip
-	unzip nibbble.1.2.zip -d /Users/`echo $USER`/Library/Screen\ Savers
-	cd -
-	defaults -currentHost write com.apple.screensaver { CleanExit = YES; PrefsVersion = 100; idleTime = 1200; moduleDict = { moduleName = Nibbble; path = "/Users/`echo $USER`/Library/Screen Savers/Nibbble.saver"; type = 0; }; showClock = 0; }
+	@cd /tmp
+	@curl -O http://uglyapps.co.uk/nibbble/nibbble.1.2.zip
+	@unzip nibbble.1.2.zip -d /Users/`echo $USER`/Library/Screen\ Savers
+	@cd -
+	@defaults -currentHost write com.apple.screensaver { CleanExit = YES; PrefsVersion = 100; idleTime = 1200; moduleDict = { moduleName = Nibbble; path = "/Users/`echo $USER`/Library/Screen Savers/Nibbble.saver"; type = 0; }; showClock = 0; }
 
 # TODO: open a "finished" page with any additional instructions
 # TODO: warnings, backups, and uninstalls?

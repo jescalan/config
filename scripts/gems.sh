@@ -1,4 +1,6 @@
-function -() { gem install "${@}" }
+function -() {
+  gem install $1
+}
 
 gem update --system
 

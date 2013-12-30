@@ -1,4 +1,6 @@
-function -() { brew install "${@}" -g }
+function -() {
+  brew install $1 -g
+}
 
 brew update
 

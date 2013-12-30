@@ -43,6 +43,7 @@ This task tweaks a bunch of configuration in OSX. More specifically, it will:
 - very quick mouse/trackpad speed (try it, you'll adjust quickly)
 - disable app installation restrictions
 - use google DNS
+- use a great-looking custom terminal theme
 - hot corners:
   - top right > all windows
   - top left > screen saver

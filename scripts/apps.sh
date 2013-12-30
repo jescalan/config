@@ -1,4 +1,6 @@
-function -() { brew cask install "${@}" }
+function -() {
+  brew cask install $1
+}
 
 brew update
 
