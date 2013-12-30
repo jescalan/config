@@ -36,10 +36,11 @@ defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock showhidden -bool true
 
 # terminal color theme
-open "${HOME}/terminal/jenius.terminal"
+killall Terminal # don't change settings while terminal is open
+open ~/.conf/terminal/jenius.terminal
 sleep 1 # make sure theme is loaded
-defaults write com.apple.terminal "Default Window Settings" -string "jenius"
-defaults write com.apple.terminal "Startup Window Settings" -string "jenius"
+defaults write com.apple.Terminal "Default Window Settings" -string jenius
+defaults write com.apple.Terminal "Default Window Settings" -string jenius
 
 # quick mouse/trackpad movement
 defaults write com.apple.trackpad.scaling -float 2.5

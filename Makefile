@@ -35,7 +35,7 @@ dotfiles: install warning
 	$(call link_dotfile,.z.sh)
 	@source ~/.profile
 
-osx: warning
+osx: install warning
 	sh scripts/osx.sh
 
 brew:
