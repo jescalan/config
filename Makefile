@@ -1,3 +1,5 @@
+default: copy
+
 install: copy dotfiles osx bins apps npm gems sublime vim git adium desktop screensaver
 
 warning:
@@ -12,7 +14,7 @@ copy:
 	cd ~/.conf
 
 dotfiles: copy warning
-	function link_dotfile(){ ln -sf ~/.conf/"${@}" ~/"${@}" }
+	function link_dotfile(){ ln -sf ~/.conf/dotfiles/"${@}" ~/"${@}" }
 	link_dotfile .bashrc
 	link_dotfile .bash_profile
 	link_dotfile .profile
@@ -50,8 +52,9 @@ ruby: brew
 	brew install rbenv ruby-build
 
 	# TODO: check for bash_profile and bashrc here too
+	# TODO: also include path and comment here
 	if grep -q 'eval "$(rbenv init -)"' ~/.profile; then
-		echo '\neval "$(rbenv init -)"' >> ~/.profile
+		echo -e '\neval "$(rbenv init -)"' >> ~/.profile
 	fi
 
 	rbenv install 2.0.0-p353
@@ -90,8 +93,8 @@ git: brew
 	# TODO: set up email, ssh keys, etc
 
 vim: copy
-	ln -sf ~/.conf/.vim ~/.vim
-	ln -sf ~/.conf/.vimrc ~/.vimrc
+	ln -sf ~/.conf/dotfiles/.vim ~/.vim
+	ln -sf ~/.conf/dotfiles/.vimrc ~/.vimrc
 
 adium:
 	# TODO: implement this

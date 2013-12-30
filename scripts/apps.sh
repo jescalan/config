@@ -1,4 +1,6 @@
-function -() { brew cask install "${@}" 2> /dev/null }
+function -() { brew cask install "${@}" }
+
+brew update
 
 - adium
 - alfred

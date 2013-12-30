@@ -1,41 +1,16 @@
-# Config Notes
-# Dependencies: rbenv, >= ruby 1.9.3, pow, powder, git, git_completion
+# Configuration
+# (https://github.com/jenius/config)
 
+# ------
 # prompt
+# ------
+
 PS1='\[\e[0;31m\]⚡\[\e[m\] \[\e[0;30m\]${PWD##*/}\[\e[39m\] \[\e[0;33m\]$(__git_ps1 "(%s) ")\[\e[m\]'
 
-# git (http://git-scm.com/)
-source ~/.git-completion.sh
-source ~/.git-prompt.sh
-
-alias co="git checkout"
-alias s="echo ''; git status -sb; echo ''"
-alias c="git commit"
-alias cm="fact; git commit -am"
-alias stage="git add ."
-alias pull="git pull"
-alias pullr="git pull -r"
-alias push="git push"
-alias pushu="git push -u"
-alias ri="git rebase -i"
-alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
-alias branch="git branch"
-alias amend="git commit --amend -m"
-
-tag() { git tag -a $1 -m "$1" }
-
-# powder (https://github.com/Rodreegez/powder)
-alias r="powder"
-alias opn="powder open"
-alias log="powder applog"
-
-# rails (http://rubyonrails.org)
-alias migrate="rake db:migrate"
-alias seed="rake db:seed"
-alias img="open app/assets/images"
-alias be="bundle exec"
-
+# -------
 # general
+# -------
+
 source ~/.z.sh
 
 alias ll="ls -lahG"
@@ -55,13 +30,56 @@ alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo 
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
-# rbenv
+# ---
+# git (http://git-scm.com/)
+# ---
+
+source ~/.git-completion.sh
+source ~/.git-prompt.sh
+
+alias co="git checkout"
+alias s="echo ''; git status -sb; echo ''"
+alias c="git commit"
+alias cm="fact; git commit -am"
+alias stage="git add ."
+alias pull="git pull"
+alias pullr="git pull -r"
+alias push="git push"
+alias pushu="git push -u"
+alias ri="git rebase -i"
+alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+alias branch="git branch"
+alias amend="git commit --amend -m"
+
+tag() { git tag -a $1 -m "$1" }
+
+# -----
+# rbenv (https://github.com/sstephenson/rbenv)
+# -----
+
 export PATH="$HOME/.rbenv/bin:/usr/local/bin:$PATH"
 eval "$(rbenv init -)"
 
-# =============================================
-# Just for Fun
-# =============================================
+# -----
+# rails (http://rubyonrails.org)
+# -----
+
+alias migrate="rake db:migrate"
+alias seed="rake db:seed"
+alias img="open app/assets/images"
+alias be="bundle exec"
+
+# ------
+# powder (https://github.com/Rodreegez/powder)
+# ------
+
+alias r="powder"
+alias opn="powder open"
+alias log="powder applog"
+
+# ------------
+# just for fun
+# ------------
 
 # random interesting fact
 alias fact="echo '------------------------------------------------------------';  curl -s randomfunfacts.com | LANG=C sed -n 's/.*<i>\(.*\)<\/i>.*/\1/p'; echo '------------------------------------------------------------'"
@@ -78,8 +96,7 @@ random_word() {
 
 # a git url shortener
 gurl() {
-  if [ "$2" ]
-  then
+  if [ "$2" ]; then
     url="url=$1 -F $2";
   else
     url="url=$1";

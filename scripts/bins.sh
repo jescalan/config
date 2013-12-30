@@ -1,18 +1,23 @@
 function -() { brew install "${@}" -g }
 
 brew update
-brew upgrade
 
 - coreutils
 - findutils
+- libxml2
+- libxslt
+- openssl
+- readline
 - git
 - tig
-- rbenv
-- ruby-build
 - grc
+- tmux
 - postgres
 - mysql
 - redis
 - mongodb
 - imagemagick
 - wget
+- cowsay
+- ack
+- nginx

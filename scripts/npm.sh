@@ -12,3 +12,4 @@ npm update
 - express
 - stylus
 - grunt-cli
+- ship

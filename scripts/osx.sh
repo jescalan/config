@@ -35,18 +35,6 @@ defaults write com.apple.dock autohide -bool true
 # make Dock icons of hidden applications translucent
 defaults write com.apple.dock showhidden -bool true
 
-# top right corner -> show all windows
-defaults write com.apple.dock wvous-tr-corner -int 3
-defaults write com.apple.dock wvous-tr-modifier -int 0
-
-# top left corner -> screen saver
-defaults write com.apple.dock wvous-tl-corner -int 5
-defaults write com.apple.dock wvous-tl-modifier -int 0
-
-# bottom left corner -> show desktop
-defaults write com.apple.dock wvous-bl-corner -int 4
-defaults write com.apple.dock wvous-bl-modifier -int 0
-
 # terminal color theme
 open "${HOME}/terminal/terminator.terminal"
 sleep 1 # make sure theme is loaded
@@ -62,3 +50,18 @@ spctl --master-disable
 
 # use google dns
 sudo networksetup -setdnsservers Wi-Fi 8.8.8.8 8.8.4.4
+
+# hot corners
+# -----------
+
+# top right corner -> show all windows
+defaults write com.apple.dock wvous-tr-corner -int 3
+defaults write com.apple.dock wvous-tr-modifier -int 0
+
+# top left corner -> screen saver
+defaults write com.apple.dock wvous-tl-corner -int 5
+defaults write com.apple.dock wvous-tl-modifier -int 0
+
+# bottom left corner -> show desktop
+defaults write com.apple.dock wvous-bl-corner -int 4
+defaults write com.apple.dock wvous-bl-modifier -int 0
