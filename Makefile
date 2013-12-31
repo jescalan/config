@@ -1,3 +1,16 @@
+# -----
+# utils
+# -----
+
+conf_dir = ~/.conf
+user = $$USER
+link_dotfile = @ln -sf $(conf_dir)/dotfiles/$(1) ~/$(1)
+pkg_path = ~/Library/Application\ Support/Sublime\ Text.app/Packages
+
+# -----
+# tasks
+# -----
+
 default: install
 
 all: install dotfiles osx bins apps npm gems sublime vim git adium desktop screensaver
@@ -10,10 +23,8 @@ warning:
 	fi;
 
 install:
-	@rsync -av --no-perms . ~/.conf &> /dev/null
+	@rsync -av --no-perms . $(conf_dir) &> /dev/null
 	@echo "installed"
-
-link_dotfile = @ln -sf ~/.conf/dotfiles/$(1) ~/$(1)
 
 dotfiles: install warning
 	@echo "creating .bashrc"
@@ -22,8 +33,6 @@ dotfiles: install warning
 	$(call link_dotfile,.bash_profile)
 	@echo "creating .profile"
 	$(call link_dotfile,.profile)
-	@echo "creating .gitconfig"
-	$(call link_dotfile,.gitconfig)
 	@echo "creating .hushlogin"
 	$(call link_dotfile,.hushlogin)
 	@echo "creating .git-completion"
@@ -67,56 +76,61 @@ npm: node
 	@bash scripts/npm.sh
 
 ruby: brew
-	brew install rbenv ruby-build
+	# installing rbenv and ruby-build
+	@brew install rbenv ruby-build
 
-	# TODO: check for bash_profile and bashrc here too
-	# TODO: also include path and comment here
-	if grep -q 'eval "$(rbenv init -)"' ~/.profile; then
-		echo -e '\neval "$(rbenv init -)"' >> ~/.profile
-	fi
+	# linking dotfiles
+	$(call link_dotfile,.profile-ruby)
+	@echo "source ~/.profile-ruby" >> ~/.profile
 
-	rbenv install 2.0.0-p353
-	rbenv rehash
-	rbenv global 2.0.0-p353
+	# installing latest version of ruby
+	@rbenv install 2.0.0-p353
+
+	# setting latest ruby as default
+	@rbenv rehash
+	@rbenv global 2.0.0-p353
 
 gems: ruby
+	# making sure rdoc and ri are not installed with gems
 	@echo -e "install: --no-rdoc --no-ri\nupdate:  --no-rdoc --no-ri" >> ~/.gemrc
+
+	# installing gems
 	sh scripts/gems.sh
 
 pow: ruby
 	curl get.pow.cx | sh
 
-pkg_path = ~/Library/Application\ Support/Sublime\ Text.app/Packages
 sublime: cask warning
-	# install sublime text if necessary
+	# installing sublime text if necessary
 	@if ls /Applications/ | grep -q "Sublime Text.app"; then \
 		brew cask install sublime-text3; \
 		ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/sub'; \
 	fi
 
-	# install/update package control
+	# installing/updating package control
 	cd $(pkg_path)/../Installed\ Packages
 	curl -O https://sublime.wbond.net/Package%20Control.sublime-package
 	cd -
 
-	# copy package control packages
+	# copying package control packages
 	cp sublime/* $(pkg_path)/User/
 
-	# restart sublime text
+	# restarting sublime text
 	killall Sublime\ Text
 
 git: install warning brew
-	# installing / updating git...
+	# installing/updating git
 	@-if @command -v git >/dev/null 2>&1; then \
 		brew upgrade git; \
 	else \
 		brew install git; \
 	fi
 
-	# linking gitconfig...
-	@ln -sf ~/.conf/dotfiles/.gitconfig ~/.gitconfig
+	# linking dotfiles
+	$(call link_dotfile,.profile-git)
+	@echo "source ~/.profile-git" >> ~/.profile
 
-	# configure git
+	# configuring git
 	@echo "please enter the following values for git configuration:"
 	@printf "name: "; \
 	read name; \
@@ -134,22 +148,23 @@ git: install warning brew
 	# TODO: generate ssh key if necessary
 
 vim: install
-	ln -sf ~/.conf/dotfiles/.vim ~/.vim
-	ln -sf ~/.conf/dotfiles/.vimrc ~/.vimrc
+	# linking dotfiles
+	$(call link_dotfile,.vim)
+	$(call link_dotfile,.vimrc)
 
 adium:
 	# TODO: implement this
 
 desktop: warning
-	@cp destkop/bg.jpg ~/.conf/desktop/bg.jpg
-	@defaults write com.apple.desktop Background '{default = {ImageFilePath = "~/.config/desktop/bg.jpg"; };}'
+	@cp destkop/bg.jpg $(conf_dir)/desktop/bg.jpg
+	@defaults write com.apple.desktop Background '{default = {ImageFilePath = "$(conf_dir)/desktop/bg.jpg"; };}'
 
 screensaver: warning
 	@cd /tmp
 	@curl -O http://uglyapps.co.uk/nibbble/nibbble.1.2.zip
-	@unzip nibbble.1.2.zip -d /Users/`echo $USER`/Library/Screen\ Savers
+	@unzip nibbble.1.2.zip -d /Users/$(user)/Library/Screen\ Savers
 	@cd -
-	@defaults -currentHost write com.apple.screensaver { CleanExit = YES; PrefsVersion = 100; idleTime = 1200; moduleDict = { moduleName = Nibbble; path = "/Users/`echo $USER`/Library/Screen Savers/Nibbble.saver"; type = 0; }; showClock = 0; }
+	@defaults -currentHost write com.apple.screensaver { CleanExit = YES; PrefsVersion = 100; idleTime = 1200; moduleDict = { moduleName = Nibbble; path = "/Users/$(user)/Library/Screen Savers/Nibbble.saver"; type = 0; }; showClock = 0; }
 
 # TODO: open a "finished" page with any additional instructions
 # TODO: warnings, backups, and uninstalls?

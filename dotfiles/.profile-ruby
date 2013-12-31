@@ -1,0 +1,23 @@
+# -----
+# rbenv (https://github.com/sstephenson/rbenv)
+# -----
+
+export PATH="$HOME/.rbenv/bin:/usr/local/bin:$PATH"
+eval "$(rbenv init -)"
+
+# -----
+# rails (http://rubyonrails.org)
+# -----
+
+alias migrate="rake db:migrate"
+alias seed="rake db:seed"
+alias img="open app/assets/images"
+alias be="bundle exec"
+
+# ------
+# powder (https://github.com/Rodreegez/powder)
+# ------
+
+alias r="powder"
+alias opn="powder open"
+alias log="powder applog"

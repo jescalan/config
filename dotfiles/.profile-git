@@ -1,0 +1,24 @@
+# ---
+# git (http://git-scm.com/)
+# ---
+
+source ~/.git-completion.sh
+source ~/.git-prompt.sh
+
+alias co="git checkout"
+alias s="echo ''; git status -sb; echo ''"
+alias c="git commit"
+alias cm="fact; git commit -am"
+alias stage="git add ."
+alias pull="git pull"
+alias pullr="git pull -r"
+alias push="git push"
+alias pushu="git push -u"
+alias ri="git rebase -i"
+alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+alias branch="git branch"
+alias amend="git commit --amend -m"
+
+tag() {
+  git tag -a $1 -m "$1"
+}
