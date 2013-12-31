@@ -35,10 +35,6 @@ dotfiles: install warning
 	$(call link_dotfile,.profile)
 	@echo "creating .hushlogin"
 	$(call link_dotfile,.hushlogin)
-	@echo "creating .git-completion"
-	$(call link_dotfile,.git-completion.sh)
-	@echo "creating .git-prompt"
-	$(call link_dotfile,.git-prompt.sh)
 	@echo "creating .z"
 	$(call link_dotfile,.z.sh)
 	@source ~/.profile
@@ -127,6 +123,8 @@ git: install warning brew
 	fi
 
 	# linking dotfiles
+	$(call link_dotfile,.git-completion)
+	$(call link_dotfile,.git-prompt)
 	$(call link_dotfile,.profile-git)
 	@echo "source ~/.profile-git" >> ~/.profile
 

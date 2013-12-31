@@ -5,6 +5,7 @@
 # prompt
 # ------
 
+# TODO: backup __git_ps1 if git prompt is not installed
 PS1='\[\e[0;31m\]⚡\[\e[m\] \[\e[0;30m\]${PWD##*/}\[\e[39m\] \[\e[0;33m\]$(__git_ps1 "(%s) ")\[\e[m\]'
 
 # -------------
