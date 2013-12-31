@@ -105,11 +105,33 @@ sublime: cask warning
 	# restart sublime text
 	killall Sublime\ Text
 
-git: brew
-	brew install git
-	# TODO: set up email, ssh keys, etc
-	# TODO: add git shortcuts to profile
-	# TODO: copy gitconfig dotfile
+git: install warning brew
+	# installing / updating git...
+	@-if @command -v git >/dev/null 2>&1; then \
+		brew upgrade git; \
+	else \
+		brew install git; \
+	fi
+
+	# linking gitconfig...
+	@ln -sf ~/.conf/dotfiles/.gitconfig ~/.gitconfig
+
+	# configure git
+	@echo "please enter the following values for git configuration:"
+	@printf "name: "; \
+	read name; \
+	printf "email: "; \
+	read email; \
+	git config --global user.name "$$name"; \
+	git config --global user.email $$email;
+
+	# setting up credential helper
+	@curl -s -O https://github-media-downloads.s3.amazonaws.com/osx/git-credential-osxkeychain
+	@chmod u+x git-credential-osxkeychain
+	@sudo mv git-credential-osxkeychain "$$(dirname $$(which git))/git-credential-osxkeychain"
+	@git config --global credential.helper osxkeychain
+
+	# TODO: generate ssh key if necessary
 
 vim: install
 	ln -sf ~/.conf/dotfiles/.vim ~/.vim
