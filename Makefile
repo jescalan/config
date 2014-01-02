@@ -80,11 +80,11 @@ ruby: brew
 	@echo "source ~/.profile-ruby" >> ~/.profile
 
 	# installing latest version of ruby
-	@rbenv install 2.0.0-p353
+	@rbenv install 2.1.0
 
 	# setting latest ruby as default
 	@rbenv rehash
-	@rbenv global 2.0.0-p353
+	@rbenv global 2.1.0
 
 gems: ruby
 	# making sure rdoc and ri are not installed with gems
