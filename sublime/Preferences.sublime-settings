@@ -5,6 +5,7 @@
 	"ensure_newline_at_eof_on_save": true,
 	"font_size": 14.0,
 	"highlight_line": true,
+	"highlight_modified_tabs": true,
 	"ignored_packages": [],
 	"scroll_past_end": true,
 	"tab_size": 2,

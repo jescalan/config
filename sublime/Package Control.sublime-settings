@@ -1,31 +1,27 @@
 {
-	"auto_upgrade_last_run": null,
 	"installed_packages":
 	[
 		"AdvancedNewFile",
 		"Alignment",
+		"Autoprefixer",
+		"Backbone.Marionette",
+		"Better CoffeeScript",
 		"BracketHighlighter",
-		"CoffeeScript",
 		"DocBlockr",
+		"EditorConfig",
 		"Emmet",
+		"Gist",
 		"GitGutter",
-		"GotoRecent",
-		"Haml",
-		"HexViewer",
-		"HTML5",
-		"Http Requester",
+		"Hayaku - tools for writing CSS faster",
 		"Jade",
-		"jQuery Snippets pack",
-		"JsMinifier",
 		"Marked.app Menu",
 		"Nodejs",
-		"Package Control",
 		"Ruby Slim",
+		"Sass",
 		"SCSS",
 		"Stylus",
-		"SublimeBlockCursor",
-		"Sublimipsum",
-		"Theme - Spacegray"
+		"Theme - Spacegray",
+		"Tomorrow Color Schemes",
+		"WakaTime"
 	]
 }
-
