@@ -123,8 +123,8 @@ git: install warning brew
 	fi
 
 	# linking dotfiles
-	$(call link_dotfile,.git-completion)
-	$(call link_dotfile,.git-prompt)
+	$(call link_dotfile,.git-completion.sh)
+	$(call link_dotfile,.git-prompt.sh)
 	$(call link_dotfile,.profile-git)
 	@echo "source ~/.profile-git" >> ~/.profile
 
