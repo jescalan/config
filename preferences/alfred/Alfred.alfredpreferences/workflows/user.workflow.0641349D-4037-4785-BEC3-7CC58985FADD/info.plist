@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>fspinillo.alfredv2.airmail</string>
+	<key>connections</key>
+	<dict>
+		<key>264A09D9-DE34-403A-9524-C67F6525811D</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>7686C74A-A33F-49C2-8231-40F1569A481A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>608F3C97-49F7-40F0-A6AB-3C9E6DE9DC14</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>76A2AA09-66C2-491D-859D-395F888D8A86</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>7686C74A-A33F-49C2-8231-40F1569A481A</key>
+		<array/>
+		<key>C548FC95-06B1-45D6-85B7-A0127695C6FD</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3CA4F892-4589-4F37-A082-E38FE70DCD60</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>DED67782-8C24-4C48-ABE1-C14E17DD8122</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>898179A1-F740-4333-82C1-A4BF58A172A1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>fspinillo</string>
+	<key>description</key>
+	<string>Workflows for Airmail tasks</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Airmail</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>applescript</key>
+				<string>on alfred_script(q)
+tell application "Airmail" to activate
+tell application "System Events"
+	keystroke "n" using {command down}
+end tell
+end alfred_script</string>
+				<key>cachescript</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>7686C74A-A33F-49C2-8231-40F1569A481A</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>an</string>
+				<key>subtext</key>
+				<string>Compose new email</string>
+				<key>text</key>
+				<string>Airmail compose email</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>264A09D9-DE34-403A-9524-C67F6525811D</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>search</string>
+				<key>subtext</key>
+				<string>Search Airmail for {query}</string>
+				<key>text</key>
+				<string>Airmail search</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>C548FC95-06B1-45D6-85B7-A0127695C6FD</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>applescript</key>
+				<string>on alfred_script(q)
+tell application "Airmail" to activate
+tell application "System Events"
+	key code 123 using {command down, control down}
+	key code 126 using {command down, shift down}
+	tell process "Airmail" to click menu item "Search Messages" of menu "Edit" of menu bar 1
+	delay .6
+	tell process "Airmail" to keystroke (q as string)
+end tell
+end alfred_script</string>
+				<key>cachescript</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>3CA4F892-4589-4F37-A082-E38FE70DCD60</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>applescript</key>
+				<string>on alfred_script(q)
+tell application "Airmail" to activate
+tell application "System Events"
+	key code 123 using {command down, control down}
+	key code 126 using {command down, shift down}
+	tell process "Airmail" to click menu item "Search Messages" of menu "Edit" of menu bar 1
+	delay .6
+	keystroke "subject: "
+	tell process "Airmail" to keystroke (q as string)
+end tell
+end alfred_script</string>
+				<key>cachescript</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>76A2AA09-66C2-491D-859D-395F888D8A86</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>subject</string>
+				<key>subtext</key>
+				<string>Search subject for {query}</string>
+				<key>text</key>
+				<string>Airmail Subject</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>608F3C97-49F7-40F0-A6AB-3C9E6DE9DC14</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>applescript</key>
+				<string>on alfred_script(q)
+tell application "Airmail" to activate
+tell application "System Events"
+	key code 123 using {command down, control down}
+	key code 126 using {command down, shift down}
+	keystroke "2"
+	tell process "Airmail" to click menu item "Search Messages" of menu "Edit" of menu bar 1
+	delay .6
+	tell process "Airmail" to keystroke (q as string)
+end tell
+end alfred_script</string>
+				<key>cachescript</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>898179A1-F740-4333-82C1-A4BF58A172A1</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>starred</string>
+				<key>subtext</key>
+				<string>Search starred {query}</string>
+				<key>text</key>
+				<string>Search Airmail for starred</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>DED67782-8C24-4C48-ABE1-C14E17DD8122</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>264A09D9-DE34-403A-9524-C67F6525811D</key>
+		<dict>
+			<key>ypos</key>
+			<real>60</real>
+		</dict>
+		<key>3CA4F892-4589-4F37-A082-E38FE70DCD60</key>
+		<dict>
+			<key>ypos</key>
+			<real>180</real>
+		</dict>
+		<key>608F3C97-49F7-40F0-A6AB-3C9E6DE9DC14</key>
+		<dict>
+			<key>ypos</key>
+			<real>300</real>
+		</dict>
+		<key>7686C74A-A33F-49C2-8231-40F1569A481A</key>
+		<dict>
+			<key>ypos</key>
+			<real>60</real>
+		</dict>
+		<key>76A2AA09-66C2-491D-859D-395F888D8A86</key>
+		<dict>
+			<key>ypos</key>
+			<real>300</real>
+		</dict>
+		<key>898179A1-F740-4333-82C1-A4BF58A172A1</key>
+		<dict>
+			<key>ypos</key>
+			<real>420</real>
+		</dict>
+		<key>C548FC95-06B1-45D6-85B7-A0127695C6FD</key>
+		<dict>
+			<key>ypos</key>
+			<real>180</real>
+		</dict>
+		<key>DED67782-8C24-4C48-ABE1-C14E17DD8122</key>
+		<dict>
+			<key>ypos</key>
+			<real>420</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>https://github.com/fspinillo/Alfred-Workflows</string>
+</dict>
+</plist>

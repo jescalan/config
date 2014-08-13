@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<workflow>
+  <name>Spotifious</name>
+  <version>0.9.4</version>
+  <bundle>com.citelao.spotifious</bundle>
+  <updated>1405205833</updated>
+  <file>spotifious.alfredworkflow</file>
+</workflow>

@@ -58,12 +58,6 @@ cask: brew
 
 apps: cask
 	@bash scripts/apps.sh
-	
-	# Defaults for Alfred
-
-	# these should just be cloned directly in, minus the license file and any credentials
-	# saved in the git plugin.
-	# Found at ~/Library/Application\ Support/Alfred\ 2/Alfred.alfredpreferences
 
 terminal: warning cask
 	# install totalterminal if not already done
@@ -95,9 +89,6 @@ alfred: warning cask
 	cp preferences/alfred/license-template.plist $(alfred_path)/license.plist
 	/usr/libexec/PlistBuddy -c "Set :code $$code" $(alfred_path)/license.plist
 	/usr/libexec/PlistBuddy -c "Set :email $$email" $(alfred_path)/license.plist
-
-	# install all workflows using `open`
-	# loop through workflows folder and open each one
 
 node: cask
 	@-if brew cask list | grep -q "node"; then \
