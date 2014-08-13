@@ -1,17 +1,17 @@
 function -() {
-  npm install $1 -g
+  npm i $1 -g
 }
 
 npm update
 
 - coffee-script
-- mocha
 - docco
-- gulp
-- roots
-- sprout
-- svgo
 - express
-- stylus
-- grunt-cli
+- ghwd
+- gulp
+- mocha
+- roots@pre
 - ship
+- sprout
+- stylus
+- svgo
