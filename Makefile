@@ -3,7 +3,6 @@
 # -----
 
 conf_dir = ~/.conf
-user = $$USER
 link_dotfile = @ln -sf $(conf_dir)/dotfiles/$(1) ~/$(1)
 sublime_pkg_path = ~/Library/Application\ Support/Sublime\ Text.app/Packages
 
@@ -178,17 +177,15 @@ vim: install
 	$(call link_dotfile,.vimrc)
 
 desktop: warning
-	@cp destkop/bg.jpg $(conf_dir)/desktop/bg.jpg
-	# TODO: use plistbuddy here
-	@defaults write com.apple.desktop Background '{default = {ImageFilePath = "$(conf_dir)/desktop/bg.jpg"; };}'
+	/usr/libexec/PlistBuddy -c "Set :Background:spaces::default:ImageFilePath $(conf_dir)/desktop/bg.jpg" ~/Library/Preferences/com.apple.desktop.plist
 
 screensaver: warning
 	@cd /tmp
 	@curl -O http://uglyapps.co.uk/nibbble/nibbble.1.2.zip
-	@unzip nibbble.1.2.zip -d /Users/$(user)/Library/Screen\ Savers
+	@unzip nibbble.1.2.zip -d ~/Library/Screen\ Savers/
 	@cd -
-	# TODO: use plistbuddy here
-	@defaults -currentHost write com.apple.screensaver { CleanExit = YES; PrefsVersion = 100; idleTime = 1200; moduleDict = { moduleName = Nibbble; path = "/Users/$(user)/Library/Screen Savers/Nibbble.saver"; type = 0; }; showClock = 0; }
+	/usr/libexec/PlistBuddy -c "Set :ModuleDict:moduleName Nibbble" ~/Library/Preferences/ByHost/com.apple.screensaver.*.plist
+	/usr/libexec/PlistBuddy -c "Set :ModuleDict:path /Users/$$USER/Library/Screen Savers/Nibbble.saver" ~/Library/Preferences/ByHost/com.apple.screensaver.*.plist
 
 # TODO: open a "finished" page with any additional instructions
 # TODO: warnings, backups, and uninstalls?
