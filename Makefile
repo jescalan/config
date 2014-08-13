@@ -5,7 +5,7 @@
 conf_dir = ~/.conf
 user = $$USER
 link_dotfile = @ln -sf $(conf_dir)/dotfiles/$(1) ~/$(1)
-pkg_path = ~/Library/Application\ Support/Sublime\ Text.app/Packages
+sublime_pkg_path = ~/Library/Application\ Support/Sublime\ Text.app/Packages
 
 # -----
 # tasks
@@ -13,7 +13,7 @@ pkg_path = ~/Library/Application\ Support/Sublime\ Text.app/Packages
 
 default: install
 
-all: install dotfiles osx bins apps npm gems sublime vim git adium desktop screensaver
+all: install dotfiles osx bins apps terminal alfred npm gems sublime vim git adium desktop screensaver
 
 warning:
 	@printf "This will overwrite existing settings. Are you sure? (y/n) "; \
@@ -58,8 +58,46 @@ cask: brew
 
 apps: cask
 	@bash scripts/apps.sh
-	# TODO: key bindings for totalterminal and alfred
-	# totalterminal in com.apple.Terminal.plist / TotalTerminalShortcuts
+	
+	# Defaults for Alfred
+
+	# these should just be cloned directly in, minus the license file and any credentials
+	# saved in the git plugin.
+	# Found at ~/Library/Application\ Support/Alfred\ 2/Alfred.alfredpreferences
+
+terminal: warning cask
+	# install totalterminal if not already done
+	@if ls /Applications/ | grep -q "TotalTerminal.app"; then \
+		brew cask install totalterminal; \
+	fi
+	
+	# install terminal preferences
+	cp preferences/terminal/com.apple.Terminal.plist ~/Library/Preferences/com.apple.Terminal.plist
+
+alfred: warning cask
+	# install alfred if not already done
+	@if ls /Applications/ | grep -q "Alfred 2.app"; then \
+		brew cask install alfred; \
+	fi
+
+	alfred_path = ~/Library/Application\ Support/Alfred\ 2
+	
+	# install alfred preferences
+	cp preferences/alfred/Alfred.alfredpreferences $(alfred_path)/Alfred.alfredpreferences
+
+	# prompt for license key and write license file
+	@echo "please enter your alfred license keys:"
+	@printf "email: "; \
+	read email; \
+	printf "license code: "; \
+	read code; \
+
+	cp preferences/alfred/license-template.plist $(alfred_path)/license.plist
+	/usr/libexec/PlistBuddy -c "Set :code $$code" $(alfred_path)/license.plist
+	/usr/libexec/PlistBuddy -c "Set :email $$email" $(alfred_path)/license.plist
+
+	# install all workflows using `open`
+	# loop through workflows folder and open each one
 
 node: cask
 	@-if brew cask list | grep -q "node"; then \
@@ -104,12 +142,12 @@ sublime: cask warning
 	fi
 
 	# installing/updating package control
-	cd $(pkg_path)/../Installed\ Packages
+	cd $(sublime_pkg_path)/../Installed\ Packages
 	curl -O https://sublime.wbond.net/Package%20Control.sublime-package
 	cd -
 
 	# copying package control packages
-	cp sublime/* $(pkg_path)/User/
+	cp preferences/sublime/* $(sublime_pkg_path)/User/
 
 	# restarting sublime text
 	killall Sublime\ Text
@@ -143,18 +181,14 @@ git: install warning brew
 	@sudo mv git-credential-osxkeychain "$$(dirname $$(which git))/git-credential-osxkeychain"
 	@git config --global credential.helper osxkeychain
 
-	# TODO: generate ssh key if necessary
-
 vim: install
 	# linking dotfiles
 	$(call link_dotfile,.vim)
 	$(call link_dotfile,.vimrc)
 
-adium:
-	# TODO: implement this
-
 desktop: warning
 	@cp destkop/bg.jpg $(conf_dir)/desktop/bg.jpg
+	# TODO: use plistbuddy here
 	@defaults write com.apple.desktop Background '{default = {ImageFilePath = "$(conf_dir)/desktop/bg.jpg"; };}'
 
 screensaver: warning
@@ -162,6 +196,7 @@ screensaver: warning
 	@curl -O http://uglyapps.co.uk/nibbble/nibbble.1.2.zip
 	@unzip nibbble.1.2.zip -d /Users/$(user)/Library/Screen\ Savers
 	@cd -
+	# TODO: use plistbuddy here
 	@defaults -currentHost write com.apple.screensaver { CleanExit = YES; PrefsVersion = 100; idleTime = 1200; moduleDict = { moduleName = Nibbble; path = "/Users/$(user)/Library/Screen Savers/Nibbble.saver"; type = 0; }; showClock = 0; }
 
 # TODO: open a "finished" page with any additional instructions
