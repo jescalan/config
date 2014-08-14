@@ -23,8 +23,8 @@ warning:
 
 install:
 	@rsync -av --no-perms . $(conf_dir) &> /dev/null
-	@ln -s $(conf_dir)/conf /usr/local/bin/conf
-	@echo "installed"
+	@ln -sf $(conf_dir)/conf /usr/local/bin/conf
+	@/bin/echo "$$(tput setaf 2)installed!$$(tput sgr 0)"
 
 dotfiles: install warning
 	@echo "creating .bashrc"
