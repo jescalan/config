@@ -9,7 +9,7 @@ This setup is intended to work only on OSX, and has been tested with OSX Maveric
 
 Installing in full will replace settings for your terminal, sublime text, adium, a number of osx system settings, and your desktop background, and will install a number of apps and binaries. If you don't want some of these things to happen, it might be better to back your stuff up or manually install individual sections, which is described below. For any sections that will overwrite settings of any sort, you will be warned and given a chance to opt out.
 
-To get started, clone this repo down, `cd` into it, and run `make`. This will get everything set up but not actually change your system or overwrite anything at all. For that part, keep reading.
+To get started, clone this repo down, `cd` into it, and run `make install`. This will set everything up (without making any changes to your system) and make a `conf` command available via the command line that you can use to control installations of specific portions. Read on for more details about this.
 
 ### Usage
 
@@ -18,9 +18,11 @@ This tool has been made very specifically to be modular, so that you can choose 
 1. You like my configuration for some things, but not everything. You should just install what you want.
 2. You like my configuration for some things or everything, but want to make some changes to fit your tastes. You should fork this repo, make the changes, and configure it to exactly your liking.
 
-Below, I'll list out each of the install tools, and what they do. This can of course also be found in the source if you'd like mor details, but **the source is not documentation** so I don't expect anyone to look there, and no developer ever should. Document your code!
+Below, I'll list out each of the install tools, and what they do. This can of course also be found in the source if you'd like more details, but **the source is not documentation** so I don't expect anyone to look there, and no developer ever should. Document your code!
 
 #### Dotfiles
+
+**Install:** `conf install dotfiles`
 
 This task will copy over a nice set of dotfiles for configuring bash preferences. It will overwrite `.bashrc`, `.bash_profile`, `.profile`, and `.gitconfig` (make sure to back these up if you already have them configured). It also links in a couple utilities for git and the command line that are loaded via the bash profile.
 

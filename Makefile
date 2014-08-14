@@ -23,6 +23,7 @@ warning:
 
 install:
 	@rsync -av --no-perms . $(conf_dir) &> /dev/null
+	@ln -s $(conf_dir)/conf /usr/local/bin/conf
 	@echo "installed"
 
 dotfiles: install warning

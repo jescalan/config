@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+echo $1 $2
+
+if [[ "$1" == "install" ]]; then
+  make $2
+fi
