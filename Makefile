@@ -177,15 +177,17 @@ vim: install
 	$(call link_dotfile,.vimrc)
 
 desktop: warning
-	/usr/libexec/PlistBuddy -c "Set :Background:spaces::default:ImageFilePath $(conf_dir)/desktop/bg.jpg" ~/Library/Preferences/com.apple.desktop.plist
+	@osascript -e "tell application \"System Events\" to set picture of every desktop to \"$(conf_dir)/desktop/bg.jpg\""
 
 screensaver: warning
+	# downloading nibbble to temp folder
 	@cd /tmp
 	@curl -O http://uglyapps.co.uk/nibbble/nibbble.1.2.zip
+
+	# moving it to the screen savers folder
 	@unzip nibbble.1.2.zip -d ~/Library/Screen\ Savers/
 	@cd -
-	/usr/libexec/PlistBuddy -c "Set :ModuleDict:moduleName Nibbble" ~/Library/Preferences/ByHost/com.apple.screensaver.*.plist
-	/usr/libexec/PlistBuddy -c "Set :ModuleDict:path /Users/$$USER/Library/Screen Savers/Nibbble.saver" ~/Library/Preferences/ByHost/com.apple.screensaver.*.plist
 
-# TODO: open a "finished" page with any additional instructions
-# TODO: warnings, backups, and uninstalls?
+	# setting screen saver preferences
+	screensaver_filename = $(find ~/Library/Preferences/ByHost/ -name com.apple.screensaver.*.plist)
+	@defaults write screensaver_filename moduleDict -dict moduleName -string Nibbble path -string "$(eval echo ~)/Library/Screen Savers/Nibbble.saver"
