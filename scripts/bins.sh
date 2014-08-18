@@ -1,5 +1,5 @@
 function -() {
-  brew install $1 -g
+  brew install $1
 }
 
 brew update
