@@ -22,6 +22,8 @@ warning:
 	fi;
 
 install:
+	@sudo mkdir -p /usr/local/bin
+	@chown -R $USER /usr/local
 	@rsync -av --no-perms . $(conf_dir) &> /dev/null
 	@ln -sf $(conf_dir)/conf /usr/local/bin/conf
 	@/bin/echo "$$(tput setaf 2)installed!$$(tput sgr 0)"
@@ -49,53 +51,64 @@ brew:
 bins: brew
 	@bash scripts/bins.sh
 
-cask: brew
-	@if ! brew tap | grep -q "phinze/cask"; then \
+cask: brew git
+	@if ! brew tap | grep -q "cask"; then \
+		echo "# tapping cask"; \
 		brew tap phinze/cask; \
 		brew install brew-cask; \
-	fi;
-	@brew tap | grep -q "caskroom/versions" || brew tap caskroom/versions
+	fi
+
+	@if ! brew tap | grep -q "caskroom/versions"; then \
+		echo "# tapping caskroom/versions"; \
+		brew tap caskroom/versions; \
+	fi
 
 apps: cask
 	@bash scripts/apps.sh
 
 terminal: warning cask
-	# install totalterminal if not already done
-	@if ls /Applications/ | grep -q "TotalTerminal.app"; then \
+	# TODO: correct for cask path
+	@if ! ls /Applications/ | grep -q "TotalTerminal.app"; then \
+		echo "# installing totalterminal"; \
 		brew cask install totalterminal; \
 	fi
 	
-	# install terminal preferences
-	cp preferences/terminal/com.apple.Terminal.plist ~/Library/Preferences/com.apple.Terminal.plist
+	# installing terminal preferences
+	# TODO: this is not working at the moment for some reason
+	@cp preferences/terminal/com.apple.Terminal.plist ~/Library/Preferences/com.apple.Terminal.plist
 
 alfred: warning cask
-	# install alfred if not already done
-	@if ls /Applications/ | grep -q "Alfred 2.app"; then \
-		brew cask install alfred; \
-	fi
+	
+	@if ! [ -d /Applications/Alfred\ 2.app ] && ! [ -d /opt/homebrew-cask/Caskroom/alfred ]; then \
+		echo "# installing alfred"; \
+		cask install alfred; \
+	fi;
 
 	alfred_path = ~/Library/Application\ Support/Alfred\ 2
 	
-	# install alfred preferences
+	# installing alfred preferences
 	cp preferences/alfred/Alfred.alfredpreferences $(alfred_path)/Alfred.alfredpreferences
 
-	# prompt for license key and write license file
 	@echo "please enter your alfred license keys:"
 	@printf "email: "; \
 	read email; \
 	printf "license code: "; \
 	read code; \
 
+	# writing license file
 	cp preferences/alfred/license-template.plist $(alfred_path)/license.plist
 	/usr/libexec/PlistBuddy -c "Set :code $$code" $(alfred_path)/license.plist
 	/usr/libexec/PlistBuddy -c "Set :email $$email" $(alfred_path)/license.plist
 
 node: cask
-	@-if brew cask list | grep -q "node"; then \
+	@if brew cask list | grep -q "node"; then \
+		echo "# updating node"; \
 		brew upgrade node; \
 	else \
+		echo "# installing node"; \
 		brew cask install node; \
 	fi
+
 
 npm: node
 	@bash scripts/npm.sh
@@ -109,11 +122,11 @@ ruby: brew
 	@echo "source ~/.profile-ruby" >> ~/.profile
 
 	# installing latest version of ruby
-	@rbenv install 2.1.0
+	@rbenv install 2.1.2
 
 	# setting latest ruby as default
 	@rbenv rehash
-	@rbenv global 2.1.0
+	@rbenv global 2.1.2
 
 gems: ruby
 	# making sure rdoc and ri are not installed with gems
@@ -123,11 +136,13 @@ gems: ruby
 	sh scripts/gems.sh
 
 pow: ruby
+	# installing pow
 	curl get.pow.cx | sh
 
 sublime: cask warning
-	# installing sublime text if necessary
+	# TODO: correct sublime text path for cask
 	@if ls /Applications/ | grep -q "Sublime Text.app"; then \
+		echo "# installing sublime text"; \
 		brew cask install sublime-text3; \
 		ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/sub'; \
 	fi
@@ -144,10 +159,11 @@ sublime: cask warning
 	killall Sublime\ Text
 
 git: install warning brew
-	# installing/updating git
-	@-if @command -v git >/dev/null 2>&1; then \
+	@if command -v git >/dev/null 2>&1; then \
+		echo "# updating git"; \
 		brew upgrade git; \
 	else \
+		echo "# installing git"; \
 		brew install git; \
 	fi
 
@@ -181,11 +197,11 @@ desktop: warning
 	@osascript -e "tell application \"System Events\" to set picture of every desktop to \"$(conf_dir)/desktop/bg.jpg\""
 
 screensaver: warning
-	# downloading nibbble to temp folder
+	# downloading nibbble
 	@cd /tmp
 	@curl -O http://uglyapps.co.uk/nibbble/nibbble.1.2.zip
 
-	# moving it to the screen savers folder
+	# moving it to screen savers
 	@unzip nibbble.1.2.zip -d ~/Library/Screen\ Savers/
 	@cd -
 
