@@ -7,7 +7,7 @@ brew update
 - alfred
 - bartender
 - caffeine
-- cloudapp
+- cloud
 - cloudup
 - daisydisk
 - dash
