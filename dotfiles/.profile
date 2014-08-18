@@ -40,6 +40,8 @@ random_word() {
   cat -n $resource | grep -w $(jot -r 1 1 $lineNum) | cut -f2;
 }
 
+export PATH=/usr/local/bin:$PATH
+
 # ---------
 # resources
 # ---------
