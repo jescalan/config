@@ -22,6 +22,7 @@ warning:
 	fi;
 
 install:
+	# make this conditional based on presence of conf bin
 	@sudo mkdir -p /usr/local/bin
 	@sudo chown -R $$USER /usr/local
 	@rsync -av --no-perms . $(conf_dir) &> /dev/null
@@ -159,7 +160,7 @@ sublime: cask warning
 	killall Sublime\ Text
 
 git: install warning brew
-	@if command -v git >/dev/null 2>&1; then \
+	@if brew list | grep -q "git"; then \
 		echo "# updating git"; \
 		brew upgrade git; \
 	else \
