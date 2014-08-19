@@ -3,5 +3,5 @@
 echo $1 $2
 
 if [[ "$1" == "install" ]]; then
-  make $2
+  (cd ~/.conf && make $2)
 fi

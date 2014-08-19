@@ -4,7 +4,8 @@
 
 conf_dir = ~/.conf
 link_dotfile = @ln -sf $(conf_dir)/dotfiles/$(1) ~/$(1)
-sublime_pkg_path = ~/Library/Application\ Support/Sublime\ Text.app/Packages
+sublime_pkg_path = ~/Library/Application\ Support/Sublime\ Text\ 3/Packages
+alfred_path = ~/Library/Application\ Support/Alfred\ 2
 
 # -----
 # tasks
@@ -22,12 +23,13 @@ warning:
 	fi;
 
 install:
-	# make this conditional based on presence of conf bin
-	@sudo mkdir -p /usr/local/bin
-	@sudo chown -R $$USER /usr/local
-	@rsync -av --no-perms . $(conf_dir) &> /dev/null
-	@ln -sf $(conf_dir)/conf /usr/local/bin/conf
-	@/bin/echo "$$(tput setaf 2)installed!$$(tput sgr 0)"
+	@if ! [ -e /usr/local/bin/conf ]; then \
+		sudo mkdir -p /usr/local/bin; \
+		sudo chown -R $$USER /usr/local; \
+		rsync -av --no-perms . $(conf_dir) &> /dev/null; \
+		ln -sf $(conf_dir)/conf /usr/local/bin/conf; \
+		/bin/echo "$$(tput setaf 2)installed!$$(tput sgr 0)"; \
+	fi
 
 dotfiles: install warning
 	@echo "creating .bashrc"
@@ -79,16 +81,13 @@ terminal: warning cask
 	@cp preferences/terminal/com.apple.Terminal.plist ~/Library/Preferences/com.apple.Terminal.plist
 
 alfred: warning cask
-	
 	@if ! [ -d /Applications/Alfred\ 2.app ] && ! [ -d /opt/homebrew-cask/Caskroom/alfred ]; then \
 		echo "# installing alfred"; \
 		cask install alfred; \
 	fi;
-
-	alfred_path = ~/Library/Application\ Support/Alfred\ 2
 	
 	# installing alfred preferences
-	cp preferences/alfred/Alfred.alfredpreferences $(alfred_path)/Alfred.alfredpreferences
+	cp -r preferences/alfred/Alfred.alfredpreferences/ $(alfred_path)/Alfred.alfredpreferences/
 
 	@echo "please enter your alfred license keys:"
 	@printf "email: "; \
@@ -97,9 +96,9 @@ alfred: warning cask
 	read code; \
 
 	# writing license file
-	cp preferences/alfred/license-template.plist $(alfred_path)/license.plist
-	/usr/libexec/PlistBuddy -c "Set :code $$code" $(alfred_path)/license.plist
-	/usr/libexec/PlistBuddy -c "Set :email $$email" $(alfred_path)/license.plist
+	@cp preferences/alfred/license-template.plist $(alfred_path)/license.plist
+	@/usr/libexec/PlistBuddy -c "Set :code $$code" $(alfred_path)/license.plist
+	@/usr/libexec/PlistBuddy -c "Set :email $$email" $(alfred_path)/license.plist
 
 node: cask
 	@if brew cask list | grep -q "node"; then \
@@ -141,23 +140,22 @@ pow: ruby
 	curl get.pow.cx | sh
 
 sublime: cask warning
-	# TODO: correct sublime text path for cask
-	@if ls /Applications/ | grep -q "Sublime Text.app"; then \
+	@if ! brew cask list | grep -q "sublime"; then \
 		echo "# installing sublime text"; \
 		brew cask install sublime-text3; \
-		ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/sub'; \
+		ln -s /opt/homebrew-cask/Caskroom/sublime-text3/*/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/sub; \
 	fi
 
 	# installing/updating package control
-	cd $(sublime_pkg_path)/../Installed\ Packages
-	curl -O https://sublime.wbond.net/Package%20Control.sublime-package
-	cd -
+	open /opt/homebrew-cask/Caskroom/sublime-text3/*/Sublime\ Text.app
+	killall Sublime\ Text
+	(cd $(sublime_pkg_path)/../Installed\ Packages && curl -O Package/ Control https://sublime.wbond.net/Package%20Control.sublime-package)
 
 	# copying package control packages
-	cp preferences/sublime/* $(sublime_pkg_path)/User/
+	@cp preferences/sublime/* $(sublime_pkg_path)/User/
 
 	# restarting sublime text
-	killall Sublime\ Text
+	@killall Sublime\ Text
 
 git: install warning brew
 	@if ! brew list | grep -q "git"; then \
@@ -165,26 +163,27 @@ git: install warning brew
 		brew install git; \
 	fi
 
-	# linking dotfiles
-	$(call link_dotfile,.git-completion.sh)
-	$(call link_dotfile,.git-prompt.sh)
-	$(call link_dotfile,.profile-git)
-	@echo "source ~/.profile-git" >> ~/.profile
-
-	# configuring git
-	@echo "please enter the following values for git configuration:"
-	@printf "name: "; \
-	read name; \
-	printf "email: "; \
-	read email; \
-	git config --global user.name "$$name"; \
-	git config --global user.email $$email;
-
-	# setting up credential helper
-	@curl -s -O https://github-media-downloads.s3.amazonaws.com/osx/git-credential-osxkeychain
-	@chmod u+x git-credential-osxkeychain
-	@sudo mv git-credential-osxkeychain "$$(dirname $$(which git))/git-credential-osxkeychain"
-	@git config --global credential.helper osxkeychain
+	@if ! [ -e ~/.git-completion.sh ]; then \
+		echo "# linking dotfiles"; \
+		$(call link_dotfile,.git-completion.sh); \
+		$(call link_dotfile,.git-prompt.sh); \
+		$(call link_dotfile,.profile-git); \
+		echo "source ~/.profile-git" >> ~/.profile; \
+		echo "# configuring git"; \
+		echo "please enter the following values for git configuration:"; \
+		printf "name: "; \
+		read name; \
+		printf "email: "; \
+		read email; \
+		git config --global user.name "$$name"; \
+		git config --global user.email $$email; \
+		echo "# setting up credential helper"; \
+		curl -s -O https://github-media-downloads.s3.amazonaws.com/osx/git-credential-osxkeychain; \
+		chmod u+x git-credential-osxkeychain; \
+		sudo mv git-credential-osxkeychain "$$(dirname $$(which git))/git-credential-osxkeychain"; \
+		git config --global credential.helper osxkeychain; \
+		source ~/.profile; \
+	fi
 
 vim: install
 	# linking dotfiles
@@ -196,13 +195,10 @@ desktop: warning
 
 screensaver: warning
 	# downloading nibbble
-	@cd /tmp
-	@curl -O http://uglyapps.co.uk/nibbble/nibbble.1.2.zip
+	@curl -O /tmp/nibbble.zip http://uglyapps.co.uk/nibbble/nibbble.1.2.zip
 
 	# moving it to screen savers
-	@unzip nibbble.1.2.zip -d ~/Library/Screen\ Savers/
-	@cd -
+	@unzip /tmp/nibbble.1.2.zip -d ~/Library/Screen\ Savers/
 
 	# setting screen saver preferences
-	screensaver_filename = $(find ~/Library/Preferences/ByHost/ -name com.apple.screensaver.*.plist)
-	@defaults write screensaver_filename moduleDict -dict moduleName -string Nibbble path -string "$(eval echo ~)/Library/Screen Savers/Nibbble.saver"
+	@defaults write $(find ~/Library/Preferences/ByHost/ -name com.apple.screensaver.*.plist) moduleDict -dict moduleName -string Nibbble path -string "$(eval echo ~)/Library/Screen Savers/Nibbble.saver"
