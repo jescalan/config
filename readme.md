@@ -3,13 +3,21 @@ Configuration
 
 There are a lot of things I need to configure when on a new computer, and I find myself doing this frequently. This is a tool for setting everything up the way I like it, and hopefully a base for you to set up things how you like them too, at very least.
 
-### Installation
+### Compatibility
 
 This setup is intended to work only on OSX, and has been tested with OSX Mavericks and up. If you are not running OSX or are running an old version, things _might_ not work, so be careful. Also, upgrade your OS. If you are on another OS, I would welcome patches or forks to make this work cross-OS, but I'm not in place where I can sink significant amounts of time into making this happen myself, so as far as I know, this repo will remain OSX-only.
 
-Installing in full will replace settings for your terminal, sublime text, adium, a number of osx system settings, and your desktop background, and will install a number of apps and binaries. If you don't want some of these things to happen, it might be better to back your stuff up or manually install individual sections, which is described below. For any sections that will overwrite settings of any sort, you will be warned and given a chance to opt out.
+This tool has the capacity to replace settings for your terminal, sublime text, alfred, a number of osx system settings, and your desktop background, and will install a number of apps and binaries. If you don't want some of these things to happen, it might be better to back your stuff up or manually install individual sections, which is described below. For any sections that will overwrite settings of any sort, you will be warned and given a chance to opt out.
 
-To get started, clone this repo down, `cd` into it, and run `make install`. This will set everything up (without making any changes to your system) and make a `conf` command available via the command line that you can use to control installations of specific portions. Read on for more details about this.
+### Installation
+
+This tool is ready to be installed initially on a completely bare machine, right after a fresh install of OSX, so there are no prerequisites.  To install, just open up a terminal and run the following command:
+
+```
+$ curl https://jenius.github.io/config/install | sh
+```
+
+This will prompt you to install xcode command line tools, and ask for you password so that it can correctly permission directories to not need sudo in the future as much as possible. If you are worried about giving your password, feel free to scan the source first to make sure no shenanigans are going on. But this is open source so it would be pretty silly for me to write in anything questionable.
 
 ### Usage
 
