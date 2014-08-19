@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-xcode-select --install
 (cd /tmp && curl -Lk https://github.com/jenius/config/tarball/v2 | tar zx)
 mv /tmp/jenius-config* ~/.config
 (cd ~/.config && make install)

@@ -11,7 +11,13 @@ This tool has the capacity to replace settings for your terminal, sublime text, 
 
 ### Installation
 
-This tool is ready to be installed initially on a completely bare machine, right after a fresh install of OSX, so there are no prerequisites.  To install, just open up a terminal and run the following command:
+This tool is ready to be installed initially on a completely bare machine, right after a fresh install of OSX, the only prerequisite is the xcode command line tools, which apple will install easily for you with this command run in your terminal:
+
+```
+$ xcode-select --install
+```
+
+When this is finished, run the following command to install the config tool:
 
 ```
 $ curl https://jenius.github.io/config/install | sh
