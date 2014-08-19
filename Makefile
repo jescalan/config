@@ -23,7 +23,7 @@ warning:
 
 install:
 	@sudo mkdir -p /usr/local/bin
-	@chown -R $USER /usr/local
+	@sudo chown -R $$USER /usr/local
 	@rsync -av --no-perms . $(conf_dir) &> /dev/null
 	@ln -sf $(conf_dir)/conf /usr/local/bin/conf
 	@/bin/echo "$$(tput setaf 2)installed!$$(tput sgr 0)"
