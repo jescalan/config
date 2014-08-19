@@ -160,10 +160,7 @@ sublime: cask warning
 	killall Sublime\ Text
 
 git: install warning brew
-	@if brew list | grep -q "git"; then \
-		echo "# updating git"; \
-		brew upgrade git; \
-	else \
+	@if ! brew list | grep -q "git"; then \
 		echo "# installing git"; \
 		brew install git; \
 	fi
