@@ -2,4 +2,4 @@
 
 (cd /tmp && curl -Lk https://github.com/jenius/config/tarball/master | tar zx)
 mv /tmp/jenius-config* ~/.config
-(cd ~/.config && make install)
+(cd ~/.config/ && make)

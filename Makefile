@@ -3,17 +3,18 @@
 # -----
 
 conf_dir = ~/.conf
-link_dotfile = @ln -sf $(conf_dir)/dotfiles/$(1) ~/$(1)
+link_dotfile = ln -sf $(conf_dir)/dotfiles/$(1) ~/$(1)
 sublime_pkg_path = ~/Library/Application\ Support/Sublime\ Text\ 3/Packages
 alfred_path = ~/Library/Application\ Support/Alfred\ 2
+ruby_version = 2.1.2
 
 # -----
 # tasks
 # -----
 
-default: install
+default: installz
 
-all: install dotfiles osx bins apps terminal alfred npm gems sublime vim git adium desktop screensaver
+all: installz dotfiles osx bins apps terminal alfred npm gems sublime vim git adium desktop screensaver
 
 warning:
 	@printf "This will overwrite existing settings. Are you sure? (y/n) "; \
@@ -22,7 +23,7 @@ warning:
 		exit 1;\
 	fi;
 
-install:
+installz:
 	@if ! [ -e /usr/local/bin/conf ]; then \
 		sudo mkdir -p /usr/local/bin; \
 		sudo chown -R $$USER /usr/local; \
@@ -31,7 +32,7 @@ install:
 		/bin/echo "$$(tput setaf 2)installed!$$(tput sgr 0)"; \
 	fi
 
-dotfiles: install warning
+dotfiles: installz warning
 	@echo "creating .bashrc"
 	$(call link_dotfile,.bashrc)
 	@echo "creating .bash_profile"
@@ -44,11 +45,11 @@ dotfiles: install warning
 	$(call link_dotfile,.z.sh)
 	@source ~/.profile
 
-osx: install warning
+osx: installz warning
 	@sh scripts/osx.sh
 
 brew:
-	@command -v brew >/dev/null 2>&1 || ruby -e "$$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+	@command -v brew >/dev/null 2>&1 || ruby -e "$$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/installz)"
 	brew update
 
 bins: brew
@@ -70,8 +71,7 @@ apps: cask
 	@bash scripts/apps.sh
 
 terminal: warning cask
-	# TODO: correct for cask path
-	@if ! ls /Applications/ | grep -q "TotalTerminal.app"; then \
+	@if ! [ -d /opt/homebrew-cask/Caskroom/totalterminal ]; then \
 		echo "# installing totalterminal"; \
 		brew cask install totalterminal; \
 	fi
@@ -83,50 +83,50 @@ terminal: warning cask
 alfred: warning cask
 	@if ! [ -d /Applications/Alfred\ 2.app ] && ! [ -d /opt/homebrew-cask/Caskroom/alfred ]; then \
 		echo "# installing alfred"; \
-		cask install alfred; \
+		brew cask install alfred; \
 	fi;
 	
 	# installing alfred preferences
-	cp -r preferences/alfred/Alfred.alfredpreferences/ $(alfred_path)/Alfred.alfredpreferences/
+	@open /opt/homebrew-cask/Caskroom/alfred/*/Alfred*.app
+	@killall Alfred\ 2
+	@cp -r preferences/alfred/Alfred.alfredpreferences/ $(alfred_path)/Alfred.alfredpreferences/
 
+	# setting up powerpack license
 	@echo "please enter your alfred license keys:"
 	@printf "email: "; \
 	read email; \
 	printf "license code: "; \
 	read code; \
-
-	# writing license file
-	@cp preferences/alfred/license-template.plist $(alfred_path)/license.plist
-	@/usr/libexec/PlistBuddy -c "Set :code $$code" $(alfred_path)/license.plist
-	@/usr/libexec/PlistBuddy -c "Set :email $$email" $(alfred_path)/license.plist
+	cp preferences/alfred/license-template.plist $(alfred_path)/license.plist; \
+	/usr/libexec/PlistBuddy -c "Set :code $$code" $(alfred_path)/license.plist; \
+	/usr/libexec/PlistBuddy -c "Set :email $$email" $(alfred_path)/license.plist
 
 node: cask
-	@if brew cask list | grep -q "node"; then \
-		echo "# updating node"; \
-		brew upgrade node; \
-	else \
+	@if ! brew cask list | grep -q "node$$"; then \
 		echo "# installing node"; \
 		brew cask install node; \
 	fi
 
-
 npm: node
+	@sudo chown -R $$USER /usr/local/lib
 	@bash scripts/npm.sh
 
 ruby: brew
-	# installing rbenv and ruby-build
-	@brew install rbenv ruby-build
+	@if ! ruby -v | grep -q $(ruby_version); then \
+		echo "# installing rbenv and ruby-build"; \
+		brew install rbenv ruby-build; \
 
-	# linking dotfiles
-	$(call link_dotfile,.profile-ruby)
-	@echo "source ~/.profile-ruby" >> ~/.profile
+		echo "# linking dotfiles"; \
+		$(call link_dotfile,.profile-ruby); \
+		echo "source ~/.profile-ruby" >> ~/.profile; \
 
-	# installing latest version of ruby
-	@rbenv install 2.1.2
+		echo "# installing latest version of ruby"; \
+		rbenv install $(ruby_version); \
 
-	# setting latest ruby as default
-	@rbenv rehash
-	@rbenv global 2.1.2
+		echo "# setting latest ruby as default"; \
+		rbenv rehash; \
+		rbenv global $(ruby_version); \
+	fi
 
 gems: ruby
 	# making sure rdoc and ri are not installed with gems
@@ -147,15 +147,14 @@ sublime: cask warning
 	fi
 
 	# installing/updating package control
-	open /opt/homebrew-cask/Caskroom/sublime-text3/*/Sublime\ Text.app
-	killall Sublime\ Text
-	(cd $(sublime_pkg_path)/../Installed\ Packages && curl -O Package/ Control https://sublime.wbond.net/Package%20Control.sublime-package)
+	@open /opt/homebrew-cask/Caskroom/sublime-text3/*/Sublime\ Text.app
+	@killall Sublime\ Text
+	(cd $(sublime_pkg_path)/../Installed\ Packages && curl -O https://sublime.wbond.net/Package\ Control.sublime-package)
 
-	# copying package control packages
+	# copying package control settings
 	@cp preferences/sublime/* $(sublime_pkg_path)/User/
 
-	# restarting sublime text
-	@killall Sublime\ Text
+	# NOTE: When you first open sublime text, it will display a few error messages and pop up a text document with release notes. During this time, it is downloading packages. Just click "ok" on the error boxes and wait for a minute or two while the dowloads complete, then restart the editor and everything will be ready to roll.
 
 git: install warning brew
 	@if ! brew list | grep -q "git"; then \
@@ -185,7 +184,7 @@ git: install warning brew
 		source ~/.profile; \
 	fi
 
-vim: install
+vim: installz
 	# linking dotfiles
 	$(call link_dotfile,.vim)
 	$(call link_dotfile,.vimrc)

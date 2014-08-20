@@ -7,14 +7,17 @@
 		"Backbone.Marionette",
 		"Better CoffeeScript",
 		"BracketHighlighter",
+		"Cucumber",
+		"DashDoc",
 		"DocBlockr",
 		"EditorConfig",
 		"Emmet",
+		"Fold Comments",
 		"Gist",
 		"GitGutter",
+		"GoSublime",
 		"Hayaku - tools for writing CSS faster",
 		"Jade",
-		"Marked.app Menu",
 		"Nodejs",
 		"Ruby Slim",
 		"Sass",
@@ -22,6 +25,6 @@
 		"Stylus",
 		"Theme - Spacegray",
 		"Tomorrow Color Schemes",
-		"WakaTime"
+		"Wrap Plus"
 	]
 }
