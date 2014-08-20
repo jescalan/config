@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-echo $1 $2
-
 if [[ "$1" == "install" ]]; then
   (cd ~/.conf && make $2)
 fi
