@@ -33,20 +33,25 @@ installz:
 		sudo chown -R $$USER /usr/local; \
 		rsync -av --no-perms . $(conf_dir) &> /dev/null; \
 		ln -sf $(conf_dir)/conf /usr/local/bin/conf; \
-		$(call success,installed!); \
+		$(call success,successfully symlinked!); \
 	fi
 
 dotfiles: installz warning
-	@echo "creating .bashrc"
+	@$(call log,creating .bashrc)
 	$(call link_dotfile,.bashrc)
-	@echo "creating .bash_profile"
+
+	@$(call log,creating .bash_profile)
 	$(call link_dotfile,.bash_profile)
-	@echo "creating .profile"
+
+	@$(call log,creating .profile)
 	$(call link_dotfile,.profile)
-	@echo "creating .hushlogin"
+
+	@$(call log,creating .hushlogin)
 	$(call link_dotfile,.hushlogin)
-	@echo "creating .z"
+
+	@$(call log,creating .z)
 	$(call link_dotfile,.z.sh)
+
 	@source ~/.profile
 
 osx: installz warning
