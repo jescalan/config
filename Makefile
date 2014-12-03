@@ -6,7 +6,11 @@ conf_dir = ~/.conf
 link_dotfile = ln -sf $(conf_dir)/dotfiles/$(1) ~/$(1)
 sublime_pkg_path = ~/Library/Application\ Support/Sublime\ Text\ 3/Packages
 alfred_path = ~/Library/Application\ Support/Alfred\ 2
-ruby_version = 2.1.2
+ruby_version = 2.1.5
+
+success = echo "$$(tput setaf 2)$1$$(tput sgr 0)"
+log = echo "$$(tput setaf 6)$1$$(tput sgr 0)"
+danger = echo "$$(tput setaf 1)$1$$(tput sgr 0)"
 
 # -----
 # tasks
@@ -29,20 +33,25 @@ installz:
 		sudo chown -R $$USER /usr/local; \
 		rsync -av --no-perms . $(conf_dir) &> /dev/null; \
 		ln -sf $(conf_dir)/conf /usr/local/bin/conf; \
-		/bin/echo "$$(tput setaf 2)installed!$$(tput sgr 0)"; \
+		$(call success,successfully symlinked!); \
 	fi
 
 dotfiles: installz warning
-	@echo "creating .bashrc"
+	@$(call log,creating .bashrc)
 	$(call link_dotfile,.bashrc)
-	@echo "creating .bash_profile"
+
+	@$(call log,creating .bash_profile)
 	$(call link_dotfile,.bash_profile)
-	@echo "creating .profile"
+
+	@$(call log,creating .profile)
 	$(call link_dotfile,.profile)
-	@echo "creating .hushlogin"
+
+	@$(call log,creating .hushlogin)
 	$(call link_dotfile,.hushlogin)
-	@echo "creating .z"
+
+	@$(call log,creating .z)
 	$(call link_dotfile,.z.sh)
+
 	@source ~/.profile
 
 osx: installz warning
@@ -75,7 +84,7 @@ terminal: warning cask
 		echo "# installing totalterminal"; \
 		brew cask install totalterminal; \
 	fi
-	
+
 	# installing terminal preferences
 	# TODO: this is not working at the moment for some reason
 	@cp preferences/terminal/com.apple.Terminal.plist ~/Library/Preferences/com.apple.Terminal.plist
@@ -85,7 +94,7 @@ alfred: warning cask
 		echo "# installing alfred"; \
 		brew cask install alfred; \
 	fi;
-	
+
 	# installing alfred preferences
 	@open /opt/homebrew-cask/Caskroom/alfred/*/Alfred*.app
 	@killall Alfred\ 2

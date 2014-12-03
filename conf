@@ -2,4 +2,9 @@
 
 if [[ "$1" == "install" ]]; then
   (cd ~/.conf && make $2)
+elif [[ "$1" == "uninstall" ]]; then
+  (cd ~/.conf && make un$2)
+else
+  echo "$(tput setaf 1)Error:$(tput sgr 0) Unknown command: $1"
+  echo "Try $(tput setaf 6)conf install $1$(tput sgr 0) or $(tput setaf 6)conf uninstall $1$(tput sgr 0)"
 fi
